@@ -1,0 +1,349 @@
+const fs = require('fs');
+const path = require('path');
+const { v4: uuidv4 } = require('uuid');
+const breeze = require('./breeze');
+const screener = require('./screener');
+const config = require('./config');
+const logger = require('./logger');
+
+const BOT_POS_FILE = path.join(__dirname, '../data/bot_positions.json');
+const PNL_FILE = path.join(__dirname, '../data/pnl.json');
+
+// ─────────────────────── IST helpers ───────────────────────
+
+function getISTDateStr(date = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(date);
+}
+
+function getISTTimeStr(date = new Date()) {
+  return new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Kolkata',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: false,
+  }).format(date);
+}
+
+function getYesterdayISTStr() {
+  const d = new Date();
+  d.setDate(d.getDate() - 1);
+  return getISTDateStr(d);
+}
+
+// ─────────────────────── File helpers ───────────────────────
+
+function readBotPositions() {
+  try {
+    if (!fs.existsSync(BOT_POS_FILE)) return [];
+    const raw = fs.readFileSync(BOT_POS_FILE, 'utf8').trim();
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    logger.error(`Failed to read bot_positions.json: ${e.message}`);
+    return [];
+  }
+}
+
+function writeBotPositions(positions) {
+  fs.writeFileSync(BOT_POS_FILE, JSON.stringify(positions, null, 2));
+}
+
+function readPnL() {
+  try {
+    if (!fs.existsSync(PNL_FILE)) return [];
+    const raw = fs.readFileSync(PNL_FILE, 'utf8').trim();
+    return raw ? JSON.parse(raw) : [];
+  } catch (e) {
+    logger.error(`Failed to read pnl.json: ${e.message}`);
+    return [];
+  }
+}
+
+function appendToPnL(trade) {
+  const trades = readPnL();
+  trades.push(trade);
+  fs.writeFileSync(PNL_FILE, JSON.stringify(trades, null, 2));
+}
+
+// ─────────────────────── Sell helpers ───────────────────────
+
+async function sellPosition(position, ltp, exitReason) {
+  const { stock, shares, buy_price, id, order_id: buyOrderId } = position;
+  const orderType = exitReason === 'stoploss' ? 'market' : 'limit';
+  const price = orderType === 'market' ? 0 : ltp;
+
+  logger.info(
+    `SELL ${stock} x${shares} @ ${orderType === 'market' ? 'MARKET' : price.toFixed(2)} ` +
+    `[${exitReason.toUpperCase()}] [${orderType.toUpperCase()}]`
+  );
+
+  let orderId = null;
+  try {
+    const result = await breeze.placeOrder({ stockCode: stock, action: 'sell', quantity: shares, price, orderType });
+    orderId = result.orderId;
+  } catch (e) {
+    logger.error(`  Failed to place sell order for ${stock}: ${e.message}`);
+    return false;
+  }
+
+  // Mark sold in bot_positions.json
+  const positions = readBotPositions();
+  const idx = positions.findIndex(p => p.id === id);
+  if (idx >= 0) positions[idx].sold = true;
+  writeBotPositions(positions);
+
+  // Record in pnl.json
+  const pnlAmount = parseFloat(((ltp - buy_price) * shares).toFixed(2));
+  const pnlPct = parseFloat((((ltp - buy_price) / buy_price) * 100).toFixed(2));
+
+  appendToPnL({
+    id,
+    stock,
+    buy_date: position.buy_date,
+    buy_time: position.buy_time,
+    buy_price: position.buy_price,
+    shares,
+    buy_order_id: buyOrderId,
+    sell_date: getISTDateStr(),
+    sell_time: getISTTimeStr(),
+    sell_price: ltp,
+    sell_order_id: orderId,
+    pnl_amount: pnlAmount,
+    pnl_pct: pnlPct,
+    exit_reason: exitReason,
+  });
+
+  logger.info(`  ${stock}: P&L ₹${pnlAmount} (${pnlPct}%) — ${exitReason}`);
+  return true;
+}
+
+async function checkAndSellPosition(position) {
+  const { stock, buy_price } = position;
+  let ltp;
+
+  try {
+    const quote = await breeze.getQuote(stock);
+    ltp = parseFloat(quote.ltp);
+  } catch (e) {
+    logger.error(`  Cannot get LTP for ${stock}: ${e.message}`);
+    return false;
+  }
+
+  const targetPrice = buy_price * (1 + config.TARGET_PCT / 100);
+  const slPrice = buy_price * (1 - config.STOPLOSS_PCT / 100);
+
+  logger.info(
+    `  Check ${stock}: ltp=${ltp.toFixed(2)} buy=${buy_price} ` +
+    `target=${targetPrice.toFixed(2)} sl=${slPrice.toFixed(2)}`
+  );
+
+  if (ltp >= targetPrice) return sellPosition(position, ltp, 'target hit');
+  if (ltp <= slPrice) return sellPosition(position, ltp, 'stoploss');
+
+  logger.info(`  ${stock} in range — holding`);
+  return false;
+}
+
+// ─────────────────────── SELL PHASE ───────────────────────
+
+async function executeSell() {
+  logger.info('══════════ SELL PHASE 9:30 AM ══════════');
+
+  if (!breeze.isSessionValid()) {
+    logger.error('ABORT SELL: Session expired or missing');
+    return;
+  }
+
+  const yesterday = getYesterdayISTStr();
+  const positions = readBotPositions();
+  const toManage = positions.filter(p => !p.sold && p.buy_date === yesterday);
+
+  if (toManage.length === 0) {
+    logger.info(`No bot positions from yesterday (${yesterday}) — nothing to sell`);
+    return;
+  }
+
+  logger.info(`Managing ${toManage.length} bot position(s) from ${yesterday}`);
+  for (const pos of toManage) {
+    await checkAndSellPosition(pos);
+    await new Promise(r => setTimeout(r, 400));
+  }
+}
+
+async function checkRemainingPositions() {
+  if (!breeze.isSessionValid()) return;
+  const yesterday = getYesterdayISTStr();
+  const positions = readBotPositions();
+  const remaining = positions.filter(p => !p.sold && p.buy_date === yesterday);
+
+  if (remaining.length === 0) return;
+
+  logger.info(`[5-min check] ${remaining.length} position(s) still open`);
+  for (const pos of remaining) {
+    await checkAndSellPosition(pos);
+    await new Promise(r => setTimeout(r, 400));
+  }
+}
+
+async function executeDeadlineSell() {
+  logger.info('══════════ DEADLINE SELL 9:45 AM ══════════');
+
+  const yesterday = getYesterdayISTStr();
+  const positions = readBotPositions();
+  const remaining = positions.filter(p => !p.sold && p.buy_date === yesterday);
+
+  if (remaining.length === 0) {
+    logger.info('No positions remaining at deadline — all clear');
+    return;
+  }
+
+  logger.warn(`DEADLINE: Force-selling ${remaining.length} position(s)`);
+  for (const pos of remaining) {
+    let ltp;
+    try {
+      const quote = await breeze.getQuote(pos.stock);
+      ltp = parseFloat(quote.ltp);
+    } catch (e) {
+      logger.error(`Cannot get LTP for ${pos.stock} at deadline: ${e.message}. Using buy price.`);
+      ltp = pos.buy_price;
+    }
+    await sellPosition(pos, ltp, 'deadline exit');
+    await new Promise(r => setTimeout(r, 400));
+  }
+
+  logger.info('══════════ DEADLINE SELL COMPLETE ══════════');
+}
+
+// ─────────────────────── BUY PHASE ───────────────────────
+
+function isHoliday() {
+  try {
+    const data = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/holidays.json'), 'utf8'));
+    const today = getISTDateStr();
+    return (data.holidays || []).includes(today);
+  } catch {
+    logger.warn('Could not read holidays.json — assuming not a holiday');
+    return false;
+  }
+}
+
+async function executeBuy() {
+  logger.info('══════════ BUY PHASE 2:50 PM ══════════');
+
+  // ── Prerequisite checks ──────────────────────────────
+  if (!breeze.isSessionValid()) {
+    logger.warn('SKIP BUY: Session token expired or missing');
+    return;
+  }
+
+  if (isHoliday()) {
+    logger.info('SKIP BUY: Today is a market holiday');
+    return;
+  }
+
+  const { changePct: niftyChg, available: niftyOk } = await screener.getNiftyConditions();
+  if (niftyOk && niftyChg < -config.MAX_NIFTY_FALL_PCT) {
+    logger.warn(`SKIP BUY: Nifty fell ${niftyChg.toFixed(2)}% — limit is -${config.MAX_NIFTY_FALL_PCT}%`);
+    return;
+  }
+
+  const { vix, available: vixOk } = await screener.getVix();
+  if (vixOk && vix > config.MAX_VIX) {
+    logger.warn(`SKIP BUY: VIX=${vix} exceeds max ${config.MAX_VIX}`);
+    return;
+  }
+
+  logger.info(
+    `Market OK: Nifty=${niftyOk ? niftyChg.toFixed(2) + '%' : 'N/A'} ` +
+    `VIX=${vixOk ? vix : 'N/A'}`
+  );
+
+  // ── Capacity check ───────────────────────────────────
+  const currentPositions = readBotPositions();
+  const openSymbols = currentPositions.filter(p => !p.sold).map(p => p.stock);
+
+  if (openSymbols.length >= config.MAX_POSITIONS) {
+    logger.warn(`SKIP BUY: Already at max open positions (${openSymbols.length}/${config.MAX_POSITIONS})`);
+    return;
+  }
+
+  const slotsLeft = config.MAX_POSITIONS - openSymbols.length;
+
+  // ── Screen stocks ────────────────────────────────────
+  const { screened, passed, selected } = await screener.screenStocks(openSymbols);
+
+  if (selected.length === 0) {
+    logger.info(`No stocks passed filters today (${screened} screened, ${passed} passed, 0 selected)`);
+    return;
+  }
+
+  const toBuy = selected.slice(0, slotsLeft);
+  const slotBudget = Math.floor(config.ALLOCATED_CAPITAL / config.MAX_POSITIONS);
+
+  // ── Place orders ─────────────────────────────────────
+  for (const stock of toBuy) {
+    const shares = Math.floor(slotBudget / stock.ltp);
+
+    if (shares === 0) {
+      logger.warn(`SKIP ${stock.symbol}: 0 shares — too expensive (ltp=${stock.ltp}, budget=₹${slotBudget})`);
+      continue;
+    }
+
+    // Limit price = LTP + 0.3%, rounded to nearest 0.05
+    const buyPrice = Math.ceil((stock.ltp * 1.003) / 0.05) * 0.05;
+    const totalCost = shares * buyPrice;
+
+    logger.info(
+      `BUY ${stock.symbol}: ` +
+      `shares=${shares} price=₹${buyPrice.toFixed(2)} total=₹${totalCost.toFixed(0)} ` +
+      `score=${stock.score} sector=${stock.sector}`
+    );
+
+    let orderId = null;
+    try {
+      const result = await breeze.placeOrder({
+        stockCode: stock.symbol,
+        action: 'buy',
+        quantity: shares,
+        price: buyPrice,
+        orderType: 'limit',
+      });
+      orderId = result.orderId;
+    } catch (e) {
+      logger.error(`  Buy order failed for ${stock.symbol}: ${e.message} — skipping`);
+      continue;
+    }
+
+    const position = {
+      id: uuidv4(),
+      stock: stock.symbol,
+      buy_date: getISTDateStr(),
+      buy_time: getISTTimeStr(),
+      buy_price: buyPrice,
+      shares,
+      order_id: orderId,
+      sold: false,
+    };
+
+    const allPositions = readBotPositions();
+    allPositions.push(position);
+    writeBotPositions(allPositions);
+
+    logger.info(`  Position logged — id=${position.id} orderId=${orderId}`);
+    await new Promise(r => setTimeout(r, 300));
+  }
+
+  logger.info('══════════ BUY PHASE COMPLETE ══════════');
+}
+
+module.exports = {
+  executeSell,
+  checkRemainingPositions,
+  executeDeadlineSell,
+  executeBuy,
+  readBotPositions,
+  readPnL,
+  getISTDateStr,
+  getISTTimeStr,
+  getYesterdayISTStr,
+};

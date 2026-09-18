@@ -1,0 +1,222 @@
+[2026-09-17 14:36:49] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-17 14:36:49] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-17 14:36:49] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-17 14:36:49] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-17 14:36:49] [INFO ] Capital:  ₹50,000
+[2026-09-17 14:36:49] [INFO ] Slots:    3 max positions
+[2026-09-17 14:36:49] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-17 14:36:49] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-17 14:36:49] [WARN ] No valid session — visit http://localhost:3000 to submit a token
+[2026-09-17 14:36:49] [WARN ] No active session — open http://localhost:3000 and submit your session token
+[2026-09-17 14:36:49] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-17 14:36:49] [INFO ] Scheduled jobs:
+[2026-09-17 14:36:49] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-17 14:36:49] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-17 14:36:49] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-17 14:36:49] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-17 14:36:49] [INFO ] Server → http://localhost:3000
+[2026-09-17 14:36:49] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-17 14:36:49] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-17 14:41:48] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-17 14:41:48] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-17 14:41:48] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-17 14:41:48] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-17 14:41:48] [INFO ] Capital:  ₹50,000
+[2026-09-17 14:41:48] [INFO ] Slots:    3 max positions
+[2026-09-17 14:41:48] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-17 14:41:48] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-17 14:41:48] [WARN ] No valid session — visit http://localhost:3000 to submit a token
+[2026-09-17 14:41:48] [WARN ] No active session — open http://localhost:3000 and submit your session token
+[2026-09-17 14:41:48] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-17 14:41:49] [INFO ] Scheduled jobs:
+[2026-09-17 14:41:49] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-17 14:41:49] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-17 14:41:49] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-17 14:41:49] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-17 14:41:49] [INFO ] Server → http://localhost:3000
+[2026-09-17 14:41:49] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-17 14:41:49] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-17 14:46:29] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-17 14:46:29] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-17 14:46:29] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-17 14:46:29] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-17 14:46:29] [INFO ] Capital:  ₹50,000
+[2026-09-17 14:46:29] [INFO ] Slots:    3 max positions
+[2026-09-17 14:46:29] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-17 14:46:29] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-17 14:46:29] [WARN ] No valid session — visit http://localhost:3000 to submit a token
+[2026-09-17 14:46:29] [WARN ] No active session — open http://localhost:3000 and submit your session token
+[2026-09-17 14:46:29] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-17 14:46:29] [INFO ] Scheduled jobs:
+[2026-09-17 14:46:29] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-17 14:46:29] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-17 14:46:29] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-17 14:46:29] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-17 14:46:29] [INFO ] Server → http://localhost:3000
+[2026-09-17 14:46:29] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-17 14:46:29] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-18 07:06:01] [INFO ] Session token received via redirect URL — activating...
+[2026-09-18 07:06:08] [INFO ] Breeze session initialized for token ending ...4039
+[2026-09-18 07:06:08] [INFO ] Session auto-activated from redirect URL
+[2026-09-18 09:20:00] [INFO ] [CRON] 2:50 PM — buy phase triggered
+[2026-09-18 09:20:00] [INFO ] ══════════ BUY PHASE 2:50 PM ══════════
+[2026-09-18 09:20:01] [INFO ] Nifty 50: +0.00%
+[2026-09-18 09:20:01] [WARN ] Could not fetch VIX data (undefined). VIX check skipped.
+[2026-09-18 09:20:01] [INFO ] Market OK: Nifty=0.00% VIX=N/A
+[2026-09-18 09:20:01] [INFO ] Screening 50 Nifty 50 stocks...
+[2026-09-18 09:20:01] [ERROR]   Error fetching RELIANCE: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:01] [ERROR]   Error fetching TCS: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:01] [ERROR]   Error fetching HDFCBANK: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:01] [ERROR]   Error fetching INFY: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:01] [ERROR]   Error fetching ICICIBANK: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:01] [ERROR]   Error fetching HINDUNILVR: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:01] [ERROR]   Error fetching ITC: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:01] [ERROR]   Error fetching SBIN: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:01] [ERROR]   Error fetching BHARTIARTL: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:01] [ERROR]   Error fetching KOTAKBANK: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:02] [ERROR]   Error fetching LT: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:02] [ERROR]   Error fetching AXISBANK: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:02] [ERROR]   Error fetching ASIANPAINT: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:02] [ERROR]   Error fetching MARUTI: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:02] [ERROR]   Error fetching TITAN: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:03] [ERROR]   Error fetching SUNPHARMA: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:03] [ERROR]   Error fetching WIPRO: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:03] [ERROR]   Error fetching ULTRACEMCO: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:03] [ERROR]   Error fetching BAJFINANCE: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:03] [ERROR]   Error fetching NESTLEIND: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:03] [ERROR]   Error fetching POWERGRID: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:03] [ERROR]   Error fetching NTPC: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:03] [ERROR]   Error fetching ONGC: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:03] [ERROR]   Error fetching TECHM: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:03] [ERROR]   Error fetching HCLTECH: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:04] [ERROR]   Error fetching TATAMOTORS: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:04] [ERROR]   Error fetching JSWSTEEL: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:04] [ERROR]   Error fetching TATASTEEL: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:04] [ERROR]   Error fetching INDUSINDBK: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:04] [ERROR]   Error fetching ADANIENT: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:04] [ERROR]   Error fetching ADANIPORTS: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:04] [ERROR]   Error fetching BAJAJFINSV: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:04] [ERROR]   Error fetching BPCL: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:04] [ERROR]   Error fetching BRITANNIA: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:04] [ERROR]   Error fetching CIPLA: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:05] [ERROR]   Error fetching COALINDIA: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:05] [ERROR]   Error fetching DIVISLAB: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:05] [ERROR]   Error fetching DRREDDY: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:05] [ERROR]   Error fetching EICHERMOT: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:05] [ERROR]   Error fetching GRASIM: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [ERROR]   Error fetching HEROMOTOCO: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [ERROR]   Error fetching HINDALCO: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [ERROR]   Error fetching M&M: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [ERROR]   Error fetching HDFCLIFE: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [ERROR]   Error fetching SBILIFE: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [ERROR]   Error fetching SHREECEM: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [ERROR]   Error fetching TATACONSUM: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [ERROR]   Error fetching UPL: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [ERROR]   Error fetching VEDL: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [ERROR]   Error fetching BAJAJ-AUTO: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  RELIANCE     — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  TCS          — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  HDFCBANK     — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  INFY         — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  ICICIBANK    — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  HINDUNILVR   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  ITC          — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  SBIN         — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  BHARTIARTL   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  KOTAKBANK    — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  LT           — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  AXISBANK     — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  ASIANPAINT   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  MARUTI       — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  TITAN        — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  SUNPHARMA    — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  WIPRO        — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  ULTRACEMCO   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  BAJFINANCE   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  NESTLEIND    — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  POWERGRID    — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  NTPC         — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  ONGC         — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  TECHM        — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  HCLTECH      — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  TATAMOTORS   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  JSWSTEEL     — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  TATASTEEL    — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  INDUSINDBK   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  ADANIENT     — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  ADANIPORTS   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  BAJAJFINSV   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  BPCL         — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  BRITANNIA    — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  CIPLA        — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  COALINDIA    — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  DIVISLAB     — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  DRREDDY      — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  EICHERMOT    — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  GRASIM       — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  HEROMOTOCO   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  HINDALCO     — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  M&M          — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  HDFCLIFE     — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  SBILIFE      — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  SHREECEM     — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  TATACONSUM   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  UPL          — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  VEDL         — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ]   SKIP  BAJAJ-AUTO   — api_error: breeze.getHistoricalDataV2 is not a function
+[2026-09-18 09:20:06] [INFO ] Screening done: 50 screened | 0 passed | 0 selected
+[2026-09-18 09:20:06] [INFO ] No stocks passed filters today (50 screened, 0 passed, 0 selected)
+[2026-09-18 10:52:01] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-18 10:52:01] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-18 10:52:01] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-18 10:52:01] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-18 10:52:01] [INFO ] Capital:  ₹50,000
+[2026-09-18 10:52:01] [INFO ] Slots:    3 max positions
+[2026-09-18 10:52:01] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-18 10:52:01] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-18 10:52:06] [INFO ] Breeze session restored from saved token
+[2026-09-18 10:52:06] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-18 10:52:06] [INFO ] Scheduled jobs:
+[2026-09-18 10:52:06] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-18 10:52:06] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-18 10:52:06] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-18 10:52:06] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-18 10:52:06] [INFO ] Server → http://localhost:3000
+[2026-09-18 10:52:06] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-18 10:52:06] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-18 10:52:51] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-18 10:52:51] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-18 10:52:51] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-18 10:52:51] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-18 10:52:51] [INFO ] Capital:  ₹50,000
+[2026-09-18 10:52:51] [INFO ] Slots:    3 max positions
+[2026-09-18 10:52:51] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-18 10:52:51] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-18 10:52:56] [INFO ] Breeze session restored from saved token
+[2026-09-18 10:52:56] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-18 10:52:56] [INFO ] Scheduled jobs:
+[2026-09-18 10:52:56] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-18 10:52:56] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-18 10:52:56] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-18 10:52:56] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-18 10:52:56] [INFO ] Server → http://localhost:3000
+[2026-09-18 10:52:56] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-18 10:52:56] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-18 10:53:02] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-18 10:53:02] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-18 10:53:02] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-18 10:53:02] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-18 10:53:02] [INFO ] Capital:  ₹50,000
+[2026-09-18 10:53:02] [INFO ] Slots:    3 max positions
+[2026-09-18 10:53:02] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-18 10:53:02] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-18 10:53:07] [INFO ] Breeze session restored from saved token
+[2026-09-18 10:53:07] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-18 10:53:07] [INFO ] Scheduled jobs:
+[2026-09-18 10:53:07] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-18 10:53:07] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-18 10:53:07] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-18 10:53:07] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-18 10:53:07] [INFO ] Server → http://localhost:3000
+[2026-09-18 10:53:07] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-18 10:53:07] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/

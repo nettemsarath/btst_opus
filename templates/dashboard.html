@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTST Bot — Dashboard</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0f0f13;
+      color: #e2e8f0;
+      min-height: 100vh;
+      padding: 24px 16px 48px;
+    }
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .page-header h1 { font-size: 1.3rem; font-weight: 700; color: #fff; }
+    .refresh-info { font-size: 0.78rem; color: #4a5568; }
+    .nav-link { font-size: 0.82rem; color: #4299e1; text-decoration: none; }
+    .nav-link:hover { text-decoration: underline; }
+
+    .dry-banner {
+      background: #2a4365; border: 1px solid #2b6cb0; color: #90cdf4;
+      border-radius: 8px; padding: 10px 16px; font-size: 0.82rem; margin-bottom: 18px;
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-bottom: 18px; }
+    @media(max-width:768px){ .grid-2{grid-template-columns:1fr;} .grid-4{grid-template-columns:1fr 1fr;} }
+    @media(max-width:480px){ .grid-4{grid-template-columns:1fr;} }
+
+    .card {
+      background: #1a1a24; border: 1px solid #2d2d3d;
+      border-radius: 12px; padding: 20px; margin-bottom: 18px;
+    }
+    .card-title {
+      font-size: 0.75rem; font-weight: 600; color: #718096;
+      text-transform: uppercase; letter-spacing: .06em; margin-bottom: 14px;
+    }
+    .stat-tile {
+      background: #1a1a24; border: 1px solid #2d2d3d;
+      border-radius: 10px; padding: 16px;
+    }
+    .stat-tile .lbl { font-size: 0.72rem; color: #718096; margin-bottom: 5px; }
+    .stat-tile .val { font-size: 1.25rem; font-weight: 700; }
+    .stat-tile .sub { font-size: 0.73rem; color: #4a5568; margin-top: 2px; }
+
+    .badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:.77rem; font-weight:600; }
+    .badge.valid   { background:#22543d; color:#68d391; }
+    .badge.invalid { background:#742a2a; color:#fc8181; }
+    .kv { font-size:.82rem; color:#a0aec0; margin-bottom:4px; }
+    .kv span { color:#e2e8f0; font-weight:500; }
+
+    .note-box {
+      background:#12121a; border-left:3px solid #3182ce;
+      padding:8px 12px; font-size:.78rem; color:#718096;
+      border-radius:0 6px 6px 0; margin-bottom:12px;
+    }
+    .table-wrap { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; font-size:.82rem; }
+    th {
+      text-align:left; padding:8px 10px; font-size:.72rem; color:#718096;
+      text-transform:uppercase; letter-spacing:.04em; border-bottom:1px solid #2d2d3d;
+    }
+    td { padding:10px; border-bottom:1px solid #1e1e2a; vertical-align:middle; }
+    tr:last-child td { border-bottom:none; }
+    tr.row-target td   { background:#1a3a1a; }
+    tr.row-stoploss td { background:#3a1a1a; }
+
+    .pnl-pos { color:#68d391; font-weight:600; }
+    .pnl-neg { color:#fc8181; font-weight:600; }
+    .pnl-neu { color:#a0aec0; }
+
+    .tag {
+      display:inline-block; padding:2px 7px; border-radius:4px;
+      font-size:.7rem; font-weight:600; background:#2d2d3d; color:#a0aec0;
+    }
+    .tag.target   { background:#22543d; color:#68d391; }
+    .tag.stoploss { background:#742a2a; color:#fc8181; }
+    .tag.deadline { background:#744210; color:#f6e05e; }
+
+    .empty { text-align:center; padding:28px; color:#4a5568; font-size:.85rem; }
+
+    .pagination { display:flex; gap:8px; align-items:center; justify-content:flex-end; margin-top:12px; flex-wrap:wrap; }
+    .page-btn {
+      padding:4px 12px; border-radius:6px; border:1px solid #2d2d3d;
+      background:transparent; color:#a0aec0; font-size:.8rem; cursor:pointer;
+    }
+    .page-btn:hover, .page-btn.active { background:#2d2d3d; color:#e2e8f0; }
+    .page-info { font-size:.75rem; color:#4a5568; }
+
+    /* Monthly bar chart — pure CSS */
+    .chart-row { display:flex; align-items:center; gap:10px; margin-bottom:7px; font-size:.78rem; }
+    .chart-lbl { width:68px; color:#718096; text-align:right; flex-shrink:0; }
+    .chart-track { flex:1; height:18px; background:#12121a; border-radius:4px; overflow:hidden; }
+    .chart-bar { height:100%; border-radius:4px; min-width:2px; }
+    .chart-bar.pos { background:#276749; }
+    .chart-bar.neg { background:#742a2a; }
+    .chart-val { width:78px; flex-shrink:0; text-align:right; }
+    .chart-val.pos { color:#68d391; }
+    .chart-val.neg { color:#fc8181; }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>BTST Bot — Dashboard</h1>
+  <div style="display:flex;gap:16px;align-items:center">
+    <span class="refresh-info" id="lastRefresh">Loading…</span>
+    <a href="/" class="nav-link">← Session</a>
+  </div>
+</div>
+
+<div class="dry-banner" id="dryBanner" style="display:none">
+  🔵 DRY RUN MODE — no real orders placed. Set <code>DRY_RUN=false</code> in .env and restart to go live.
+</div>
+
+<!-- Session + Next Action -->
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">Session</div>
+    <div style="margin-bottom:10px">
+      <span class="badge" id="sessionBadge">…</span>
+    </div>
+    <div class="kv" id="sessionExpiry">—</div>
+    <div class="kv" id="sessionAge">—</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Next Scheduled Action</div>
+    <div style="font-size:1.1rem;font-weight:700" id="nextLbl">—</div>
+    <div style="font-size:.82rem;color:#718096;margin-top:5px" id="nextTime">—</div>
+    <hr style="border:none;border-top:1px solid #2d2d3d;margin:12px 0">
+    <div class="kv">Open positions: <span id="openCnt">—</span></div>
+    <div class="kv">Capital: <span id="capDisplay">—</span></div>
+    <div class="kv">Max slots: <span id="maxSlots">—</span></div>
+  </div>
+</div>
+
+<!-- Stat tiles -->
+<div class="grid-4">
+  <div class="stat-tile"><div class="lbl">Total Trades</div><div class="val" id="stTotal">—</div></div>
+  <div class="stat-tile"><div class="lbl">Win Rate</div><div class="val" id="stWR">—</div><div class="sub" id="stWL">—</div></div>
+  <div class="stat-tile"><div class="lbl">Total P&amp;L</div><div class="val" id="stPnl">—</div></div>
+  <div class="stat-tile"><div class="lbl">Avg Win / Avg Loss</div><div class="val" id="stAvg">—</div></div>
+</div>
+
+<!-- Open positions -->
+<div class="card">
+  <div class="card-title">Open Bot Positions</div>
+  <div class="note-box">Bot-managed only. Your manual ICICI Direct holdings are never shown or touched.</div>
+  <div id="posSection"><div class="empty">Loading…</div></div>
+</div>
+
+<!-- Trade history -->
+<div class="card">
+  <div class="card-title">Trade History</div>
+  <div id="histSection"><div class="empty">Loading…</div></div>
+  <div class="pagination" id="histPager"></div>
+</div>
+
+<!-- Best / Worst -->
+<div class="grid-2">
+  <div class="card"><div class="card-title">Best Trade</div><div id="bestTrade" class="empty">No trades yet</div></div>
+  <div class="card"><div class="card-title">Worst Trade</div><div id="worstTrade" class="empty">No trades yet</div></div>
+</div>
+
+<!-- Monthly chart -->
+<div class="card">
+  <div class="card-title">Monthly P&amp;L (₹)</div>
+  <div id="monthlyChart"><div class="empty">No closed trades yet</div></div>
+</div>
+
+<script>
+  let curPage = 1;
+  let totPages = 1;
+
+  const fmt = n => n == null ? '—' : (n < 0 ? '-₹' : '₹') + Math.abs(n).toLocaleString('en-IN', {maximumFractionDigits:2});
+  const fmtP = n => n == null ? '—' : (n >= 0 ? '+' : '') + n.toFixed(2) + '%';
+  const pCls = n => n == null ? 'pnl-neu' : n > 0 ? 'pnl-pos' : n < 0 ? 'pnl-neg' : 'pnl-neu';
+
+  function reasonTag(r) {
+    const cls = r === 'target hit' ? 'target' : r === 'stoploss' ? 'stoploss' : r === 'deadline exit' ? 'deadline' : '';
+    return `<span class="tag ${cls}">${r || '—'}</span>`;
+  }
+
+  function renderSession(s, cfg) {
+    const b = document.getElementById('sessionBadge');
+    if (s.valid) { b.textContent = `Active (${s.hours_remaining}h left)`; b.className = 'badge valid'; }
+    else          { b.textContent = 'Expired / Missing'; b.className = 'badge invalid'; }
+    document.getElementById('sessionExpiry').innerHTML = `Expires: <span>${s.expires_at ? new Date(s.expires_at).toLocaleString() : 'N/A'}</span>`;
+    document.getElementById('sessionAge').innerHTML    = `Saved: <span>${s.saved_at ? new Date(s.saved_at).toLocaleString() : '—'}</span>`;
+    if (cfg) {
+      document.getElementById('dryBanner').style.display = cfg.dry_run ? 'block' : 'none';
+      document.getElementById('capDisplay').textContent = '₹' + (cfg.allocated_capital||0).toLocaleString('en-IN');
+      document.getElementById('maxSlots').textContent   = cfg.max_positions || 3;
+    }
+  }
+
+  function renderStats(s) {
+    document.getElementById('stTotal').textContent = s.total || '0';
+    document.getElementById('stWR').textContent    = s.total ? s.win_rate + '%' : '—';
+    document.getElementById('stWL').textContent    = `${s.wins}W / ${s.losses}L`;
+    const pEl = document.getElementById('stPnl');
+    pEl.textContent = fmt(s.total_pnl); pEl.className = 'val ' + pCls(s.total_pnl);
+    document.getElementById('stAvg').textContent   = s.total ? `${fmtP(s.avg_win)} / ${fmtP(s.avg_loss)}` : '—';
+  }
+
+  function renderPositions(positions) {
+    const el = document.getElementById('posSection');
+    if (!positions || !positions.length) { el.innerHTML = '<div class="empty">No open bot positions</div>'; return; }
+    const rows = positions.map(p => {
+      const rc = p.status === 'target' ? 'row-target' : p.status === 'stoploss' ? 'row-stoploss' : '';
+      return `<tr class="${rc}">
+        <td><strong>${p.stock}</strong></td>
+        <td>₹${(p.buy_price||0).toFixed(2)}</td>
+        <td>${p.ltp != null ? '₹'+p.ltp.toFixed(2) : '—'}</td>
+        <td class="${pCls(p.pnl_pct)}">${fmtP(p.pnl_pct)}</td>
+        <td class="${pCls(p.pnl_amount)}">${fmt(p.pnl_amount)}</td>
+        <td>${p.shares}</td>
+        <td>${p.status||'—'}</td>
+        <td style="font-size:.72rem;color:#718096">${p.buy_time||'—'}</td>
+      </tr>`;
+    }).join('');
+    el.innerHTML = `<div class="table-wrap"><table>
+      <thead><tr><th>Stock</th><th>Buy</th><th>LTP</th><th>P&amp;L %</th><th>P&amp;L ₹</th><th>Qty</th><th>Status</th><th>Time</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>`;
+  }
+
+  function renderHistory(history, total, pages) {
+    totPages = pages;
+    const el = document.getElementById('histSection');
+    if (!history || !history.length) { el.innerHTML = '<div class="empty">No completed trades yet</div>'; document.getElementById('histPager').innerHTML = ''; return; }
+    const rows = history.map(t => `<tr>
+      <td style="font-size:.74rem;color:#718096">${t.sell_date||t.buy_date}</td>
+      <td><strong>${t.stock}</strong></td>
+      <td>₹${(t.buy_price||0).toFixed(2)}</td>
+      <td>₹${(t.sell_price||0).toFixed(2)}</td>
+      <td class="${pCls(t.pnl_amount)}">${fmt(t.pnl_amount)}</td>
+      <td class="${pCls(t.pnl_pct)}">${fmtP(t.pnl_pct)}</td>
+      <td>${reasonTag(t.exit_reason)}</td>
+    </tr>`).join('');
+    el.innerHTML = `<div class="table-wrap"><table>
+      <thead><tr><th>Date</th><th>Stock</th><th>Buy</th><th>Sell</th><th>P&amp;L ₹</th><th>P&amp;L %</th><th>Reason</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>`;
+    renderPager(pages, total);
+  }
+
+  function renderPager(pages, total) {
+    const el = document.getElementById('histPager');
+    if (pages <= 1) { el.innerHTML = ''; return; }
+    let html = `<span class="page-info">Page ${curPage}/${pages} · ${total} trades</span>`;
+    if (curPage > 1) html += `<button class="page-btn" onclick="goPage(${curPage-1})">← Prev</button>`;
+    for (let i = Math.max(1,curPage-2); i <= Math.min(pages,curPage+2); i++)
+      html += `<button class="page-btn ${i===curPage?'active':''}" onclick="goPage(${i})">${i}</button>`;
+    if (curPage < pages) html += `<button class="page-btn" onclick="goPage(${curPage+1})">Next →</button>`;
+    el.innerHTML = html;
+  }
+
+  function goPage(p) { curPage = p; loadData(); }
+
+  function renderBestWorst(s) {
+    function card(t, cls) {
+      if (!t) return '<div class="empty">No trades yet</div>';
+      return `<div class="kv">Stock: <span>${t.stock}</span></div>
+              <div class="kv">Date: <span>${t.sell_date||t.buy_date}</span></div>
+              <div class="kv">P&amp;L: <span class="${cls}">${fmt(t.pnl_amount)} (${fmtP(t.pnl_pct)})</span></div>
+              <div class="kv">Exit: <span>${t.exit_reason||'—'}</span></div>`;
+    }
+    document.getElementById('bestTrade').innerHTML  = card(s.best, 'pnl-pos');
+    document.getElementById('worstTrade').innerHTML = card(s.worst, 'pnl-neg');
+  }
+
+  function renderMonthly(monthly) {
+    const el = document.getElementById('monthlyChart');
+    const keys = Object.keys(monthly||{}).sort();
+    if (!keys.length) { el.innerHTML = '<div class="empty">No closed trades yet</div>'; return; }
+    const vals = keys.map(k => monthly[k]);
+    const maxAbs = Math.max(...vals.map(Math.abs), 1);
+    el.innerHTML = keys.map(k => {
+      const v = monthly[k], pct = Math.min(100,(Math.abs(v)/maxAbs)*100);
+      const cls = v >= 0 ? 'pos' : 'neg';
+      const [y, m] = k.split('-');
+      const lbl = new Date(+y, +m-1).toLocaleString('en-US',{month:'short'}) + ' ' + y;
+      return `<div class="chart-row">
+        <div class="chart-lbl">${lbl}</div>
+        <div class="chart-track"><div class="chart-bar ${cls}" style="width:${pct}%"></div></div>
+        <div class="chart-val ${cls}">${fmt(v)}</div>
+      </div>`;
+    }).join('');
+  }
+
+  async function loadData() {
+    try {
+      const d = await fetch(`/api/dashboard-data?page=${curPage}`).then(r => r.json());
+
+      renderSession(d.session, d.config);
+      renderStats(d.stats);
+      renderPositions(d.positions);
+      renderHistory(d.history, d.history_total, d.history_pages);
+      renderBestWorst(d.stats);
+      renderMonthly(d.monthly);
+
+      if (d.today) {
+        document.getElementById('openCnt').textContent = d.today.open_count ?? '0';
+        if (d.today.next_action) {
+          document.getElementById('nextLbl').textContent  = d.today.next_action.label || '—';
+          document.getElementById('nextTime').textContent = d.today.next_action.time  || '—';
+        }
+      }
+
+      document.getElementById('lastRefresh').textContent = 'Refreshed ' + new Date().toLocaleTimeString();
+    } catch(e) {
+      console.error(e);
+      document.getElementById('lastRefresh').textContent = 'Load error — retrying…';
+    }
+  }
+
+  loadData();
+  setInterval(loadData, 60000);
+</script>
+</body>
+</html>

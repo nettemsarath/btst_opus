@@ -1,0 +1,13 @@
+
+services:
+  btst-bot:
+    build: .
+    container_name: btst-bot
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    env_file:
+      - .env
+    restart: unless-stopped
