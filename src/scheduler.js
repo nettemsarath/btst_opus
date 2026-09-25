@@ -15,7 +15,7 @@ function startPositionChecks() {
     try {
       await trader.checkRemainingPositions();
     } catch (e) {
-      logger.error(`[5-min] Position check error: ${e.message}`);
+      logger.error(`[5-min] Position check error: ${e instanceof Error ? e.message : String(e)}`);
     }
   }, 5 * 60 * 1000);
 }
@@ -40,7 +40,7 @@ function startScheduler() {
       await trader.executeSell();
       startPositionChecks();
     } catch (e) {
-      logger.error(`[CRON] Sell phase error: ${e.message}`);
+      logger.error(`[CRON] Sell phase error: ${e instanceof Error ? e.message : String(e)}`);
     }
   }, { timezone: TZ });
 
@@ -51,7 +51,7 @@ function startScheduler() {
     try {
       await trader.executeDeadlineSell();
     } catch (e) {
-      logger.error(`[CRON] Deadline sell error: ${e.message}`);
+      logger.error(`[CRON] Deadline sell error: ${e instanceof Error ? e.message : String(e)}`);
     }
   }, { timezone: TZ });
 
@@ -61,7 +61,7 @@ function startScheduler() {
     try {
       await trader.executeBuy();
     } catch (e) {
-      logger.error(`[CRON] Buy phase error: ${e.message}`);
+      logger.error(`[CRON] Buy phase error: ${e instanceof Error ? e.message : String(e)}`);
     }
   }, { timezone: TZ });
 

@@ -1,4 +1,5 @@
 const { BreezeConnect } = require('breezeconnect');
+const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 const config = require('./config');
@@ -11,10 +12,28 @@ let _sessionReady = false;
 
 // ─────────────────────── Instance ───────────────────────
 
+// breezeconnect library bug: `url` is declared with `let` inside the `try` block of
+// makeRequest but referenced in the `catch` block (out of scope), so any HTTP error
+// surfaces as "ReferenceError: url is not defined" instead of the real cause.
+// We replace makeRequest on the instance with a corrected version.
+function _patchMakeRequest(breeze) {
+  const API_URL = 'https://api.icicidirect.com/breezeapi/api/v1/';
+  breeze.makeRequest = async function patchedMakeRequest(method, endpoint, body, header) {
+    const url = API_URL + endpoint; // declared outside try so catch can reference it
+    try {
+      const res = await axios({ method: method.toLowerCase(), url, data: body, headers: header });
+      return res;
+    } catch (error) {
+      throw new Error(`makeRequest ${method} ${url} failed: ${error.message}`);
+    }
+  };
+}
+
 function _getInstance() {
   if (!_breeze) {
     if (!config.BREEZE_API_KEY) throw new Error('BREEZE_API_KEY not set in .env');
     _breeze = new BreezeConnect({ appKey: config.BREEZE_API_KEY });
+    _patchMakeRequest(_breeze);
   }
   return _breeze;
 }
@@ -42,12 +61,23 @@ function _saveSession(token) {
 
 // ─────────────────────── Validity ───────────────────────
 
+function _istDateStr(date) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(date);
+}
+
+function _midnightISTExpiry(istDateStr) {
+  // Token expires at 00:00 IST of the next day = end of istDateStr in IST.
+  // 00:00 IST = UTC-05:30, so next IST day's midnight = same UTC date at 18:30.
+  const [y, m, d] = istDateStr.split('-').map(Number);
+  return new Date(Date.UTC(y, m - 1, d, 18, 30, 0));
+}
+
 function isSessionValid() {
   const session = loadSession();
   if (!session || !session.session_token || !session.saved_at) return false;
-  const ageMs = Date.now() - new Date(session.saved_at).getTime();
-  const ageHours = ageMs / (1000 * 60 * 60);
-  return ageHours < config.SESSION_VALIDITY_HOURS;
+  const savedDateIST = _istDateStr(new Date(session.saved_at));
+  const todayIST = _istDateStr(new Date());
+  return savedDateIST === todayIST;
 }
 
 function getSessionInfo() {
@@ -57,11 +87,14 @@ function getSessionInfo() {
   }
 
   const savedAt = new Date(session.saved_at);
-  const ageMs = Date.now() - savedAt.getTime();
-  const ageHours = ageMs / (1000 * 60 * 60);
-  const valid = ageHours < config.SESSION_VALIDITY_HOURS;
-  const hoursRemaining = Math.max(0, config.SESSION_VALIDITY_HOURS - ageHours);
-  const expiresAt = new Date(savedAt.getTime() + config.SESSION_VALIDITY_HOURS * 3600000);
+  const savedDateIST = _istDateStr(savedAt);
+  const todayIST = _istDateStr(new Date());
+  const valid = savedDateIST === todayIST;
+
+  const expiresAt = _midnightISTExpiry(savedDateIST);
+  const now = new Date();
+  const hoursRemaining = Math.max(0, (expiresAt - now) / 3600000);
+  const ageHours = (now - savedAt) / 3600000;
 
   return {
     valid,
@@ -94,10 +127,32 @@ async function initFromSavedSession() {
     const breeze = _getInstance();
     await breeze.generateSession(config.BREEZE_API_SECRET, session.session_token);
     _sessionReady = true;
-    logger.info('Breeze session restored from saved token');
+    const alive = await pingSession();
+    if (alive) {
+      logger.info('Breeze session restored and verified live');
+    } else {
+      logger.warn('Session restored but API ping failed — token may be stale. Re-submit at http://localhost:3000');
+    }
     return true;
   } catch (e) {
-    logger.error(`Failed to restore session: ${e.message}`);
+    logger.error(`Failed to restore session: ${e instanceof Error ? e.message : String(e)}`);
+    return false;
+  }
+}
+
+async function pingSession() {
+  if (!_breeze || !_sessionReady) return false;
+  try {
+    const res = await _breeze.getQuotes({
+      stockCode: 'NIFTY',
+      exchangeCode: 'NSE',
+      productType: 'cash',
+      expiryDate: '',
+      strikePrice: '',
+      right: 'others',
+    });
+    return !!(res && res.Success && res.Success[0]);
+  } catch {
     return false;
   }
 }
@@ -109,51 +164,88 @@ function _requireSession() {
 
 // ─────────────────────── Market data ───────────────────────
 
+async function _withRetry(fn, label, retries = 3, delayMs = 1000) {
+  let consecutive503 = 0;
+  for (let attempt = 1; attempt <= retries; attempt++) {
+    try {
+      const result = await fn();
+      if (attempt > 1) logger.info(`${label} recovered on attempt ${attempt}/${retries}`);
+      return result;
+    } catch (e) {
+      // breezeConnect's errorException throws a string with the full stack appended;
+      // take only the first line so we don't dump a raw stack trace into the log.
+      const firstLine = String(e.message || e).split('\n')[0];
+      const is503 = firstLine.includes('503');
+      if (is503) consecutive503++;
+      if (attempt === retries) {
+        if (consecutive503 === retries) {
+          logger.warn(`${label} — all retries returned 503. If this persists, your session token may be stale. Re-submit at http://localhost:3000`);
+        }
+        throw e;
+      }
+      logger.warn(`${label} failed (attempt ${attempt}/${retries}), retrying in ${delayMs * attempt}ms: ${firstLine}`);
+      await new Promise(r => setTimeout(r, delayMs * attempt));
+    }
+  }
+}
+
 /**
  * Returns a quote object for a single NSE cash stock.
- * Response fields (Breeze naming): ltp, previous-close, ltp-percent-change,
- * total-quantity-traded, open, high, low
+ * Response fields (Breeze naming): ltp, previous_close, ltp_percent_change,
+ * total_quantity_traded, open, high, low
  */
 async function getQuote(stockCode) {
   const breeze = _requireSession();
-  const res = await breeze.getQuotes({
-    stockCode,
-    exchangeCode: 'NSE',
-    productType: 'cash',
-    expiryDate: '',
-    strikePrice: '',
-    right: 'others',
-  });
+  return _withRetry(async () => {
+    const res = await breeze.getQuotes({
+      stockCode,
+      exchangeCode: 'NSE',
+      productType: 'cash',
+      expiryDate: '',
+      strikePrice: '',
+      right: 'others',
+    });
 
-  if (!res || !res.Success || !res.Success[0]) {
-    throw new Error(`No quote returned for ${stockCode}: ${JSON.stringify(res && res.Error)}`);
-  }
-  return res.Success[0];
+    if (!res || !res.Success || !res.Success[0]) {
+      throw new Error(`No quote returned for ${stockCode}: ${JSON.stringify(res && res.Error)}`);
+    }
+    return res.Success[0];
+  }, `getQuote(${stockCode})`);
 }
 
 /**
  * Returns array of daily OHLCV candles sorted ascending by date.
  * Each item: { datetime, open, high, low, close, volume }
  */
+function _toBreezeDateStr(date) {
+  const pad = n => String(n).padStart(2, '0');
+  const y = date.getUTCFullYear();
+  const m = pad(date.getUTCMonth() + 1);
+  const d = pad(date.getUTCDate());
+  return `${y}-${m}-${d}T07:00:00.000Z`;
+}
+
 async function getHistoricalData(stockCode, fromDate, toDate) {
   const breeze = _requireSession();
-  const res = await breeze.getHistoricalDatav2({
-    interval: '1day',
-    fromDate: fromDate.toISOString(),
-    toDate: toDate.toISOString(),
-    stockCode,
-    exchangeCode: 'NSE',
-    productType: 'cash',
-    expiryDate: '',
-    strikePrice: '',
-    right: 'others',
-  });
+  return _withRetry(async () => {
+    const res = await breeze.getHistoricalDatav2({
+      interval: '1day',
+      fromDate: _toBreezeDateStr(fromDate),
+      toDate: _toBreezeDateStr(toDate),
+      stockCode,
+      exchangeCode: 'NSE',
+      productType: 'cash',
+      expiryDate: '',
+      strikePrice: '',
+      right: 'others',
+    });
 
-  if (!res || !res.Success) {
-    throw new Error(`No historical data for ${stockCode}: ${JSON.stringify(res && res.Error)}`);
-  }
+    if (!res || !res.Success) {
+      throw new Error(`No historical data for ${stockCode}: ${JSON.stringify(res && res.Error)}`);
+    }
 
-  return [...res.Success].sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+    return [...res.Success].sort((a, b) => new Date(a.datetime) - new Date(b.datetime));
+  }, `getHistoricalData(${stockCode})`);
 }
 
 // ─────────────────────── Orders ───────────────────────
@@ -198,8 +290,8 @@ async function placeOrder({ stockCode, action, quantity, price, orderType = 'lim
     validityDate: vd.toISOString(),
     disclosedQuantity: '0',
     expiryDate: '',
-    right: 'others',
-    strikePrice: '0',
+    right: '',
+    strikePrice: '',
     userRemark: 'btst-bot',
   });
 

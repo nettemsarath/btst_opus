@@ -30,7 +30,6 @@ app.get('/', async (req, res) => {
 
   res.sendFile(path.join(__dirname, '../templates/index.html'));
 });
-
 // ─────────────────────── Session endpoints ───────────────────────
 
 app.get('/session/status', (req, res) => {

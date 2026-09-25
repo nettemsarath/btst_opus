@@ -69,12 +69,16 @@ function appendToPnL(trade) {
 
 async function sellPosition(position, ltp, exitReason) {
   const { stock, shares, buy_price, id, order_id: buyOrderId } = position;
-  const orderType = exitReason === 'stoploss' ? 'market' : 'limit';
-  const price = orderType === 'market' ? 0 : ltp;
+  // Breeze API prohibits market orders (SEBI circular) — always use limit.
+  // For stoploss, price slightly below LTP to maximise fill probability.
+  const orderType = 'limit';
+  const price = exitReason === 'stoploss'
+    ? Math.floor((ltp * 0.995) / 0.05) * 0.05
+    : ltp;
 
   logger.info(
-    `SELL ${stock} x${shares} @ ${orderType === 'market' ? 'MARKET' : price.toFixed(2)} ` +
-    `[${exitReason.toUpperCase()}] [${orderType.toUpperCase()}]`
+    `SELL ${stock} x${shares} @ ${price.toFixed(2)} ` +
+    `[${exitReason.toUpperCase()}] [LIMIT]`
   );
 
   let orderId = null;
@@ -82,7 +86,7 @@ async function sellPosition(position, ltp, exitReason) {
     const result = await breeze.placeOrder({ stockCode: stock, action: 'sell', quantity: shares, price, orderType });
     orderId = result.orderId;
   } catch (e) {
-    logger.error(`  Failed to place sell order for ${stock}: ${e.message}`);
+    logger.error(`  Failed to place sell order for ${stock}: ${e instanceof Error ? e.message : String(e)}`);
     return false;
   }
 
@@ -125,7 +129,7 @@ async function checkAndSellPosition(position) {
     const quote = await breeze.getQuote(stock);
     ltp = parseFloat(quote.ltp);
   } catch (e) {
-    logger.error(`  Cannot get LTP for ${stock}: ${e.message}`);
+    logger.error(`  Cannot get LTP for ${stock}: ${e instanceof Error ? e.message : String(e)}`);
     return false;
   }
 
@@ -149,8 +153,8 @@ async function checkAndSellPosition(position) {
 async function executeSell() {
   logger.info('══════════ SELL PHASE 9:30 AM ══════════');
 
-  if (!breeze.isSessionValid()) {
-    logger.error('ABORT SELL: Session expired or missing');
+  if (!(await breeze.pingSession())) {
+    logger.error('ABORT SELL: Session invalid or API unreachable — re-submit token at http://localhost:3000');
     return;
   }
 
@@ -204,7 +208,7 @@ async function executeDeadlineSell() {
       const quote = await breeze.getQuote(pos.stock);
       ltp = parseFloat(quote.ltp);
     } catch (e) {
-      logger.error(`Cannot get LTP for ${pos.stock} at deadline: ${e.message}. Using buy price.`);
+      logger.error(`Cannot get LTP for ${pos.stock} at deadline: ${e instanceof Error ? e.message : String(e)}. Using buy price.`);
       ltp = pos.buy_price;
     }
     await sellPosition(pos, ltp, 'deadline exit');
@@ -241,7 +245,11 @@ async function executeBuy() {
     return;
   }
 
-  const { changePct: niftyChg, available: niftyOk } = await screener.getNiftyConditions();
+  const { changePct: niftyChg, ltp: niftyLtp, available: niftyOk } = await screener.getNiftyConditions();
+  if (niftyOk && niftyLtp === 0) {
+    logger.info('SKIP BUY: Nifty LTP is zero — market appears closed or holiday');
+    return;
+  }
   if (niftyOk && niftyChg < -config.MAX_NIFTY_FALL_PCT) {
     logger.warn(`SKIP BUY: Nifty fell ${niftyChg.toFixed(2)}% — limit is -${config.MAX_NIFTY_FALL_PCT}%`);
     return;
@@ -310,7 +318,7 @@ async function executeBuy() {
       });
       orderId = result.orderId;
     } catch (e) {
-      logger.error(`  Buy order failed for ${stock.symbol}: ${e.message} — skipping`);
+      logger.error(`  Buy order failed for ${stock.symbol}: ${e instanceof Error ? e.message : String(e)} — skipping`);
       continue;
     }
 

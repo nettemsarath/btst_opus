@@ -4,38 +4,51 @@ const logger = require('./logger');
 
 // ─────────────────────── Universe ───────────────────────
 
+// ICICIDirect ISec codes (ShortName from NSEScripMaster.txt) — required by Breeze API.
+// NSE symbol → ISec code mapping verified from SecurityMaster/NSEScripMaster.txt.
+// Nifty50 composition current as of Sep 2026 (9 stale stocks replaced).
 const NIFTY50_SYMBOLS = [
-  'RELIANCE', 'TCS', 'HDFCBANK', 'INFY', 'ICICIBANK',
-  'HINDUNILVR', 'ITC', 'SBIN', 'BHARTIARTL', 'KOTAKBANK',
-  'LT', 'AXISBANK', 'ASIANPAINT', 'MARUTI', 'TITAN',
-  'SUNPHARMA', 'WIPRO', 'ULTRACEMCO', 'BAJFINANCE', 'NESTLEIND',
-  'POWERGRID', 'NTPC', 'ONGC', 'TECHM', 'HCLTECH',
-  'TATAMOTORS', 'JSWSTEEL', 'TATASTEEL', 'INDUSINDBK', 'ADANIENT',
-  'ADANIPORTS', 'BAJAJFINSV', 'BPCL', 'BRITANNIA', 'CIPLA',
-  'COALINDIA', 'DIVISLAB', 'DRREDDY', 'EICHERMOT', 'GRASIM',
-  'HEROMOTOCO', 'HINDALCO', 'M&M', 'HDFCLIFE', 'SBILIFE',
-  'SHREECEM', 'TATACONSUM', 'UPL', 'VEDL', 'BAJAJ-AUTO',
+  'RELIND', 'TCS',    'HDFBAN', 'INFTEC', 'ICIBAN',
+  'HINLEV', 'ITC',    'STABAN', 'BHAAIR', 'KOTMAH',
+  'LARTOU', 'AXIBAN', 'ASIPAI', 'MARUTI', 'TITIND',
+  'SUNPHA', 'WIPRO',  'ULTCEM', 'BAJFI',  'NESIND',
+  'POWGRI', 'NTPC',   'ONGC',   'TECMAH', 'HCLTEC',
+  'TATMOT', 'JSWSTE', 'TATSTE', 'JIOFIN', 'ADAENT',
+  'ADAPOR', 'BAFINS', 'BHAELE', 'APOHOS', 'CIPLA',
+  'COALIN', 'TRENT',  'DRREDD', 'EICMOT', 'GRASIM',
+  'MAXHEA', 'HINDAL', 'MAHMAH', 'HDFSTA', 'SBILIF',
+  'SHRTRA', 'TATGLO', 'ZOMLIM', 'INTAVI', 'BAAUTO',
 ];
 
 const SECTORS = {
-  RELIANCE: 'energy',   TCS: 'it',           HDFCBANK: 'banking',
-  INFY: 'it',           ICICIBANK: 'banking', HINDUNILVR: 'fmcg',
-  ITC: 'fmcg',          SBIN: 'banking',      BHARTIARTL: 'telecom',
-  KOTAKBANK: 'banking', LT: 'infra',          AXISBANK: 'banking',
-  ASIANPAINT: 'consumer', MARUTI: 'auto',     TITAN: 'consumer',
-  SUNPHARMA: 'pharma',  WIPRO: 'it',          ULTRACEMCO: 'cement',
-  BAJFINANCE: 'finance', NESTLEIND: 'fmcg',   POWERGRID: 'energy',
-  NTPC: 'energy',       ONGC: 'energy',       TECHM: 'it',
-  HCLTECH: 'it',        TATAMOTORS: 'auto',   JSWSTEEL: 'metals',
-  TATASTEEL: 'metals',  INDUSINDBK: 'banking', ADANIENT: 'energy',
-  ADANIPORTS: 'infra',  BAJAJFINSV: 'finance', BPCL: 'energy',
-  BRITANNIA: 'fmcg',    CIPLA: 'pharma',      COALINDIA: 'energy',
-  DIVISLAB: 'pharma',   DRREDDY: 'pharma',    EICHERMOT: 'auto',
-  GRASIM: 'cement',     HEROMOTOCO: 'auto',   HINDALCO: 'metals',
-  'M&M': 'auto',        HDFCLIFE: 'finance',  SBILIFE: 'finance',
-  SHREECEM: 'cement',   TATACONSUM: 'fmcg',   UPL: 'chemicals',
-  VEDL: 'metals',       'BAJAJ-AUTO': 'auto',
+  RELIND: 'energy',   TCS: 'it',        HDFBAN: 'banking',
+  INFTEC: 'it',       ICIBAN: 'banking', HINLEV: 'fmcg',
+  ITC: 'fmcg',        STABAN: 'banking', BHAAIR: 'telecom',
+  KOTMAH: 'banking',  LARTOU: 'infra',   AXIBAN: 'banking',
+  ASIPAI: 'consumer', MARUTI: 'auto',    TITIND: 'consumer',
+  SUNPHA: 'pharma',   WIPRO: 'it',       ULTCEM: 'cement',
+  BAJFI: 'finance',   NESIND: 'fmcg',    POWGRI: 'energy',
+  NTPC: 'energy',     ONGC: 'energy',    TECMAH: 'it',
+  HCLTEC: 'it',       TATMOT: 'auto',    JSWSTE: 'metals',
+  TATSTE: 'metals',   JIOFIN: 'finance', ADAENT: 'energy',
+  ADAPOR: 'infra',    BAFINS: 'finance', BHAELE: 'defense',
+  APOHOS: 'pharma',   CIPLA: 'pharma',   COALIN: 'energy',
+  TRENT: 'consumer',  DRREDD: 'pharma',  EICMOT: 'auto',
+  GRASIM: 'cement',   MAXHEA: 'pharma',  HINDAL: 'metals',
+  MAHMAH: 'auto',     HDFSTA: 'finance', SBILIF: 'finance',
+  SHRTRA: 'finance',  TATGLO: 'fmcg',    ZOMLIM: 'consumer',
+  INTAVI: 'aviation', BAAUTO: 'auto',
 };
+
+// ─────────────────────── Helpers ───────────────────────
+
+function _errMsg(e) {
+  if (e == null) return 'unknown error';
+  if (e instanceof Error) return e.message || e.toString();
+  if (typeof e === 'string') return e.split('\n')[0];
+  if (typeof e === 'object') return e.message || e.error || e.Error || JSON.stringify(e);
+  return String(e);
+}
 
 // ─────────────────────── Math ───────────────────────
 
@@ -55,23 +68,27 @@ async function getNiftyConditions() {
   try {
     // Nifty 50 index via Breeze. If this fails, we proceed with a warning.
     const quote = await breeze.getQuote('NIFTY');
-    const changePct = parseFloat(quote['ltp-percent-change'] || 0);
+    const ltp = parseFloat(quote.ltp || 0);
+    const prevClose = parseFloat(quote['previous_close'] || 0);
+    const changePct = prevClose > 0 ? ((ltp - prevClose) / prevClose) * 100 : 0;
     logger.info(`Nifty 50: ${changePct >= 0 ? '+' : ''}${changePct.toFixed(2)}%`);
-    return { changePct, available: true };
+    return { changePct, ltp, available: true };
   } catch (e) {
-    logger.warn(`Could not fetch Nifty data (${e.message}). Market condition check skipped.`);
+    const msg = _errMsg(e);
+    logger.warn(`Could not fetch Nifty data (${msg}). Market condition check skipped.`);
     return { changePct: 0, available: false };
   }
 }
 
 async function getVix() {
   try {
-    const quote = await breeze.getQuote('INDIAVIX');
+    const quote = await breeze.getQuote('INDVIX');
     const vix = parseFloat(quote.ltp || 0);
     logger.info(`India VIX: ${vix}`);
     return { vix, available: true };
   } catch (e) {
-    logger.warn(`Could not fetch VIX data (${e.message}). VIX check skipped.`);
+    const msg = _errMsg(e);
+    logger.warn(`Could not fetch VIX data (${msg}). VIX check skipped.`);
     return { vix: 0, available: false };
   }
 }
@@ -90,8 +107,8 @@ async function analyzeStock(symbol) {
     ]);
 
     const ltp = parseFloat(quote.ltp);
-    const prevClose = parseFloat(quote['previous-close']);
-    const todayVolume = parseFloat(quote['total-quantity-traded'] || 0);
+    const prevClose = parseFloat(quote['previous_close']);
+    const todayVolume = parseFloat(quote['total_quantity_traded'] || 0);
 
     if (!ltp || !prevClose) {
       return { symbol, passed: false, reason: 'invalid_quote_data' };
@@ -126,8 +143,9 @@ async function analyzeStock(symbol) {
       sector: SECTORS[symbol] || 'other',
     };
   } catch (e) {
-    logger.error(`  Error fetching ${symbol}: ${e.message}`);
-    return { symbol, passed: false, reason: `api_error: ${e.message}` };
+    const msg = _errMsg(e);
+    logger.error(`  Error fetching ${symbol}: ${msg}`);
+    return { symbol, passed: false, reason: `api_error: ${msg}` };
   }
 }
 
@@ -213,14 +231,14 @@ async function screenStocks(openSymbols = []) {
   logger.info(`Screening ${NIFTY50_SYMBOLS.length} Nifty 50 stocks...`);
   const all = [];
 
-  // Fetch in batches of 5 to respect rate limits
-  const BATCH = 5;
-  for (let i = 0; i < NIFTY50_SYMBOLS.length; i += BATCH) {
-    const batch = NIFTY50_SYMBOLS.slice(i, i + BATCH);
-    const results = await Promise.all(batch.map(analyzeStock));
-    all.push(...results);
-    if (i + BATCH < NIFTY50_SYMBOLS.length) {
-      await new Promise(r => setTimeout(r, 600));
+  // Process sequentially with a delay to avoid hitting Breeze API rate limits.
+  // Batching 5 at a time fires 10 simultaneous requests (quote + history per stock),
+  // which consistently triggers rate limiting.
+  for (let i = 0; i < NIFTY50_SYMBOLS.length; i++) {
+    const result = await analyzeStock(NIFTY50_SYMBOLS[i]);
+    all.push(result);
+    if (i + 1 < NIFTY50_SYMBOLS.length) {
+      await new Promise(r => setTimeout(r, 300));
     }
   }
 

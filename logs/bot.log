@@ -220,3 +220,1365 @@
 [2026-09-18 10:53:07] [INFO ] Server → http://localhost:3000
 [2026-09-18 10:53:07] [INFO ] Dashboard → http://localhost:3000/dashboard
 [2026-09-18 10:53:07] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-21 05:49:02] [INFO ] Session token received via redirect URL — activating...
+[2026-09-21 05:49:09] [INFO ] Breeze session initialized for token ending ...4918
+[2026-09-21 05:49:09] [INFO ] Session auto-activated from redirect URL
+[2026-09-21 05:49:23] [INFO ] Session token received via redirect URL — activating...
+[2026-09-21 05:49:28] [INFO ] Breeze session initialized for token ending ...4918
+[2026-09-21 05:49:28] [INFO ] Session auto-activated from redirect URL
+[2026-09-21 09:20:00] [INFO ] [CRON] 2:50 PM — buy phase triggered
+[2026-09-21 09:20:00] [INFO ] ══════════ BUY PHASE 2:50 PM ══════════
+[2026-09-21 09:20:06] [INFO ] Nifty 50: +0.00%
+[2026-09-21 09:20:06] [WARN ] Could not fetch VIX data (undefined). VIX check skipped.
+[2026-09-21 09:20:06] [INFO ] Market OK: Nifty=0.00% VIX=N/A
+[2026-09-21 09:20:06] [INFO ] Screening 50 Nifty 50 stocks...
+[2026-09-21 09:20:06] [ERROR]   Error fetching RELIANCE: undefined
+[2026-09-21 09:20:07] [ERROR]   Error fetching HDFCBANK: undefined
+[2026-09-21 09:20:07] [ERROR]   Error fetching ICICIBANK: No quote returned for ICICIBANK: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-21 09:20:07] [ERROR]   Error fetching INFY: No quote returned for INFY: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-21 09:20:07] [ERROR]   Error fetching TCS: No historical data for TCS: "Date not in Proper Format"
+[2026-09-21 09:20:08] [ERROR]   Error fetching ITC: undefined
+[2026-09-21 09:20:08] [ERROR]   Error fetching KOTAKBANK: undefined
+[2026-09-21 09:20:08] [ERROR]   Error fetching SBIN: undefined
+[2026-09-21 09:20:08] [ERROR]   Error fetching BHARTIARTL: undefined
+[2026-09-21 09:20:08] [ERROR]   Error fetching HINDUNILVR: No quote returned for HINDUNILVR: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-21 09:20:08] [ERROR]   Error fetching LT: undefined
+[2026-09-21 09:20:08] [ERROR]   Error fetching TITAN: undefined
+[2026-09-21 09:20:08] [ERROR]   Error fetching MARUTI: undefined
+[2026-09-21 09:20:08] [ERROR]   Error fetching AXISBANK: undefined
+[2026-09-21 09:20:08] [ERROR]   Error fetching ASIANPAINT: No historical data for ASIANPAINT: "Date not in Proper Format"
+[2026-09-21 09:20:09] [ERROR]   Error fetching NESTLEIND: undefined
+[2026-09-21 09:20:09] [ERROR]   Error fetching BAJFINANCE: undefined
+[2026-09-21 09:20:09] [ERROR]   Error fetching WIPRO: No historical data for WIPRO: "Date not in Proper Format"
+[2026-09-21 09:20:09] [ERROR]   Error fetching ULTRACEMCO: No historical data for ULTRACEMCO: "Date not in Proper Format"
+[2026-09-21 09:20:09] [ERROR]   Error fetching SUNPHARMA: No historical data for SUNPHARMA: "Date not in Proper Format"
+[2026-09-21 09:20:10] [ERROR]   Error fetching POWERGRID: undefined
+[2026-09-21 09:20:10] [ERROR]   Error fetching ONGC: undefined
+[2026-09-21 09:20:10] [ERROR]   Error fetching TECHM: undefined
+[2026-09-21 09:20:10] [ERROR]   Error fetching HCLTECH: undefined
+[2026-09-21 09:20:10] [ERROR]   Error fetching NTPC: No historical data for NTPC: "Date not in Proper Format"
+[2026-09-21 09:20:11] [ERROR]   Error fetching TATASTEEL: undefined
+[2026-09-21 09:20:11] [ERROR]   Error fetching INDUSINDBK: undefined
+[2026-09-21 09:20:11] [ERROR]   Error fetching JSWSTEEL: undefined
+[2026-09-21 09:20:11] [ERROR]   Error fetching ADANIENT: undefined
+[2026-09-21 09:20:11] [ERROR]   Error fetching TATAMOTORS: No historical data for TATAMOTORS: "Date not in Proper Format"
+[2026-09-21 09:20:11] [ERROR]   Error fetching BPCL: undefined
+[2026-09-21 09:20:11] [ERROR]   Error fetching CIPLA: undefined
+[2026-09-21 09:20:11] [ERROR]   Error fetching BAJAJFINSV: No historical data for BAJAJFINSV: "Date not in Proper Format"
+[2026-09-21 09:20:11] [ERROR]   Error fetching ADANIPORTS: No historical data for ADANIPORTS: "Date not in Proper Format"
+[2026-09-21 09:20:11] [ERROR]   Error fetching BRITANNIA: No historical data for BRITANNIA: "Date not in Proper Format"
+[2026-09-21 09:20:12] [ERROR]   Error fetching COALINDIA: undefined
+[2026-09-21 09:20:12] [ERROR]   Error fetching DIVISLAB: undefined
+[2026-09-21 09:20:12] [ERROR]   Error fetching EICHERMOT: undefined
+[2026-09-21 09:20:12] [ERROR]   Error fetching GRASIM: undefined
+[2026-09-21 09:20:12] [ERROR]   Error fetching DRREDDY: No historical data for DRREDDY: "Date not in Proper Format"
+[2026-09-21 09:20:13] [ERROR]   Error fetching HEROMOTOCO: undefined
+[2026-09-21 09:20:13] [ERROR]   Error fetching SBILIFE: undefined
+[2026-09-21 09:20:13] [ERROR]   Error fetching HINDALCO: No historical data for HINDALCO: "Date not in Proper Format"
+[2026-09-21 09:20:13] [ERROR]   Error fetching HDFCLIFE: No historical data for HDFCLIFE: "Date not in Proper Format"
+[2026-09-21 09:20:13] [ERROR]   Error fetching M&M: No historical data for M&M: "Date not in Proper Format"
+[2026-09-21 09:20:14] [ERROR]   Error fetching SHREECEM: undefined
+[2026-09-21 09:20:14] [ERROR]   Error fetching UPL: undefined
+[2026-09-21 09:20:14] [ERROR]   Error fetching VEDL: undefined
+[2026-09-21 09:20:14] [ERROR]   Error fetching TATACONSUM: undefined
+[2026-09-21 09:20:14] [ERROR]   Error fetching BAJAJ-AUTO: No historical data for BAJAJ-AUTO: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  RELIANCE     — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  TCS          — api_error: No historical data for TCS: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  HDFCBANK     — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  INFY         — api_error: No quote returned for INFY: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-21 09:20:14] [INFO ]   SKIP  ICICIBANK    — api_error: No quote returned for ICICIBANK: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-21 09:20:14] [INFO ]   SKIP  HINDUNILVR   — api_error: No quote returned for HINDUNILVR: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-21 09:20:14] [INFO ]   SKIP  ITC          — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  SBIN         — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  BHARTIARTL   — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  KOTAKBANK    — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  LT           — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  AXISBANK     — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  ASIANPAINT   — api_error: No historical data for ASIANPAINT: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  MARUTI       — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  TITAN        — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  SUNPHARMA    — api_error: No historical data for SUNPHARMA: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  WIPRO        — api_error: No historical data for WIPRO: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  ULTRACEMCO   — api_error: No historical data for ULTRACEMCO: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  BAJFINANCE   — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  NESTLEIND    — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  POWERGRID    — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  NTPC         — api_error: No historical data for NTPC: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  ONGC         — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  TECHM        — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  HCLTECH      — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  TATAMOTORS   — api_error: No historical data for TATAMOTORS: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  JSWSTEEL     — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  TATASTEEL    — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  INDUSINDBK   — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  ADANIENT     — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  ADANIPORTS   — api_error: No historical data for ADANIPORTS: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  BAJAJFINSV   — api_error: No historical data for BAJAJFINSV: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  BPCL         — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  BRITANNIA    — api_error: No historical data for BRITANNIA: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  CIPLA        — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  COALINDIA    — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  DIVISLAB     — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  DRREDDY      — api_error: No historical data for DRREDDY: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  EICHERMOT    — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  GRASIM       — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  HEROMOTOCO   — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  HINDALCO     — api_error: No historical data for HINDALCO: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  M&M          — api_error: No historical data for M&M: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  HDFCLIFE     — api_error: No historical data for HDFCLIFE: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ]   SKIP  SBILIFE      — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  SHREECEM     — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  TATACONSUM   — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  UPL          — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  VEDL         — api_error: undefined
+[2026-09-21 09:20:14] [INFO ]   SKIP  BAJAJ-AUTO   — api_error: No historical data for BAJAJ-AUTO: "Date not in Proper Format"
+[2026-09-21 09:20:14] [INFO ] Screening done: 50 screened | 0 passed | 0 selected
+[2026-09-21 09:20:14] [INFO ] No stocks passed filters today (50 screened, 0 passed, 0 selected)
+[2026-09-21 09:22:49] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-21 09:22:49] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-21 09:22:49] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-21 09:22:49] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-21 09:22:49] [INFO ] Capital:  ₹50,000
+[2026-09-21 09:22:49] [INFO ] Slots:    3 max positions
+[2026-09-21 09:22:49] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-21 09:22:49] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-21 09:23:06] [INFO ] Breeze session restored from saved token
+[2026-09-21 09:23:06] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-21 09:23:06] [INFO ] Scheduled jobs:
+[2026-09-21 09:23:06] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-21 09:23:06] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-21 09:23:06] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-21 09:23:06] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-21 09:23:06] [INFO ] Server → http://localhost:3000
+[2026-09-21 09:23:06] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-21 09:23:06] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-21 09:39:55] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-21 09:39:55] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-21 09:39:55] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-21 09:39:55] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-21 09:39:55] [INFO ] Capital:  ₹50,000
+[2026-09-21 09:39:55] [INFO ] Slots:    3 max positions
+[2026-09-21 09:39:55] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-21 09:39:55] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-21 09:40:34] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-21 09:40:34] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-21 09:40:34] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-21 09:40:34] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-21 09:40:34] [INFO ] Capital:  ₹50,000
+[2026-09-21 09:40:34] [INFO ] Slots:    3 max positions
+[2026-09-21 09:40:34] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-21 09:40:34] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-21 09:40:48] [INFO ] Breeze session restored from saved token
+[2026-09-21 09:40:48] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-21 09:40:48] [INFO ] Scheduled jobs:
+[2026-09-21 09:40:48] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-21 09:40:48] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-21 09:40:48] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-21 09:40:48] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-21 09:40:48] [INFO ] Server → http://localhost:3000
+[2026-09-21 09:40:48] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-21 09:40:48] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-22 04:20:31] [INFO ] Session token received via redirect URL — activating...
+[2026-09-22 04:20:39] [INFO ] Breeze session initialized for token ending ...7115
+[2026-09-22 04:20:39] [INFO ] Session auto-activated from redirect URL
+[2026-09-22 04:20:58] [INFO ] Session token received via redirect URL — activating...
+[2026-09-22 04:21:03] [INFO ] Breeze session initialized for token ending ...7115
+[2026-09-22 04:21:03] [INFO ] Session auto-activated from redirect URL
+[2026-09-22 06:11:21] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-22 06:11:21] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-22 06:11:21] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-22 06:11:21] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-22 06:11:21] [INFO ] Capital:  ₹50,000
+[2026-09-22 06:11:21] [INFO ] Slots:    3 max positions
+[2026-09-22 06:11:21] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-22 06:11:21] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-22 06:11:26] [INFO ] Breeze session restored from saved token
+[2026-09-22 06:11:26] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-22 06:11:26] [INFO ] Scheduled jobs:
+[2026-09-22 06:11:26] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-22 06:11:26] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-22 06:11:26] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-22 06:11:26] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-22 06:11:26] [INFO ] Server → http://localhost:3000
+[2026-09-22 06:11:26] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-22 06:11:26] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-22 09:17:26] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-22 09:17:26] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-22 09:17:26] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-22 09:17:26] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-22 09:17:26] [INFO ] Capital:  ₹50,000
+[2026-09-22 09:17:26] [INFO ] Slots:    3 max positions
+[2026-09-22 09:17:26] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-22 09:17:26] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-22 09:17:31] [INFO ] Breeze session restored from saved token
+[2026-09-22 09:17:31] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-22 09:17:31] [INFO ] Scheduled jobs:
+[2026-09-22 09:17:31] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-22 09:17:31] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-22 09:17:31] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-22 09:17:31] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-22 09:17:31] [INFO ] Server → http://localhost:3000
+[2026-09-22 09:17:31] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-22 09:17:31] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-22 09:20:00] [INFO ] [CRON] 2:50 PM — buy phase triggered
+[2026-09-22 09:20:00] [INFO ] ══════════ BUY PHASE 2:50 PM ══════════
+[2026-09-22 09:20:01] [INFO ] Nifty 50: +0.00%
+[2026-09-22 09:20:01] [WARN ] Could not fetch VIX data (undefined). VIX check skipped.
+[2026-09-22 09:20:01] [INFO ] Market OK: Nifty=0.00% VIX=N/A
+[2026-09-22 09:20:01] [INFO ] Screening 50 Nifty 50 stocks...
+[2026-09-22 09:20:01] [ERROR]   Error fetching RELIANCE: undefined
+[2026-09-22 09:20:01] [ERROR]   Error fetching ICICIBANK: undefined
+[2026-09-22 09:20:01] [ERROR]   Error fetching INFY: No quote returned for INFY: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:01] [ERROR]   Error fetching HDFCBANK: No quote returned for HDFCBANK: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:02] [ERROR]   Error fetching HINDUNILVR: undefined
+[2026-09-22 09:20:02] [ERROR]   Error fetching ITC: undefined
+[2026-09-22 09:20:02] [ERROR]   Error fetching SBIN: undefined
+[2026-09-22 09:20:02] [ERROR]   Error fetching BHARTIARTL: undefined
+[2026-09-22 09:20:02] [ERROR]   Error fetching KOTAKBANK: undefined
+[2026-09-22 09:20:03] [ERROR]   Error fetching ASIANPAINT: undefined
+[2026-09-22 09:20:03] [ERROR]   Error fetching LT: No quote returned for LT: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:03] [ERROR]   Error fetching AXISBANK: No quote returned for AXISBANK: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:03] [ERROR]   Error fetching TITAN: No quote returned for TITAN: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:04] [ERROR]   Error fetching WIPRO: undefined
+[2026-09-22 09:20:04] [ERROR]   Error fetching ULTRACEMCO: undefined
+[2026-09-22 09:20:04] [ERROR]   Error fetching BAJFINANCE: undefined
+[2026-09-22 09:20:04] [ERROR]   Error fetching NESTLEIND: undefined
+[2026-09-22 09:20:04] [ERROR]   Error fetching SUNPHARMA: No quote returned for SUNPHARMA: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:04] [ERROR]   Error fetching POWERGRID: undefined
+[2026-09-22 09:20:04] [ERROR]   Error fetching HCLTECH: undefined
+[2026-09-22 09:20:04] [ERROR]   Error fetching TECHM: undefined
+[2026-09-22 09:20:05] [ERROR]   Error fetching TATAMOTORS: undefined
+[2026-09-22 09:20:05] [ERROR]   Error fetching INDUSINDBK: undefined
+[2026-09-22 09:20:05] [ERROR]   Error fetching JSWSTEEL: undefined
+[2026-09-22 09:20:05] [ERROR]   Error fetching ADANIENT: undefined
+[2026-09-22 09:20:05] [ERROR]   Error fetching TATASTEEL: undefined
+[2026-09-22 09:20:06] [ERROR]   Error fetching BPCL: undefined
+[2026-09-22 09:20:06] [ERROR]   Error fetching BRITANNIA: No quote returned for BRITANNIA: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:06] [ERROR]   Error fetching ADANIPORTS: No quote returned for ADANIPORTS: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:06] [ERROR]   Error fetching BAJAJFINSV: No quote returned for BAJAJFINSV: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:06] [ERROR]   Error fetching DIVISLAB: undefined
+[2026-09-22 09:20:06] [ERROR]   Error fetching DRREDDY: undefined
+[2026-09-22 09:20:06] [ERROR]   Error fetching GRASIM: undefined
+[2026-09-22 09:20:06] [ERROR]   Error fetching COALINDIA: No quote returned for COALINDIA: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:06] [ERROR]   Error fetching EICHERMOT: No quote returned for EICHERMOT: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:07] [ERROR]   Error fetching HEROMOTOCO: undefined
+[2026-09-22 09:20:07] [ERROR]   Error fetching HINDALCO: undefined
+[2026-09-22 09:20:07] [ERROR]   Error fetching M&M: undefined
+[2026-09-22 09:20:07] [ERROR]   Error fetching HDFCLIFE: undefined
+[2026-09-22 09:20:07] [ERROR]   Error fetching SBILIFE: undefined
+[2026-09-22 09:20:08] [ERROR]   Error fetching UPL: undefined
+[2026-09-22 09:20:08] [ERROR]   Error fetching TATACONSUM: No quote returned for TATACONSUM: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [ERROR]   Error fetching SHREECEM: No quote returned for SHREECEM: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [ERROR]   Error fetching BAJAJ-AUTO: No quote returned for BAJAJ-AUTO: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [ERROR]   Error fetching VEDL: No quote returned for VEDL: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  RELIANCE     — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  TCS          — invalid_quote_data
+[2026-09-22 09:20:08] [INFO ]   SKIP  HDFCBANK     — api_error: No quote returned for HDFCBANK: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  INFY         — api_error: No quote returned for INFY: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  ICICIBANK    — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  HINDUNILVR   — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  ITC          — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  SBIN         — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  BHARTIARTL   — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  KOTAKBANK    — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  LT           — api_error: No quote returned for LT: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  AXISBANK     — api_error: No quote returned for AXISBANK: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  ASIANPAINT   — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  MARUTI       — invalid_quote_data
+[2026-09-22 09:20:08] [INFO ]   SKIP  TITAN        — api_error: No quote returned for TITAN: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  SUNPHARMA    — api_error: No quote returned for SUNPHARMA: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  WIPRO        — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  ULTRACEMCO   — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  BAJFINANCE   — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  NESTLEIND    — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  POWERGRID    — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  NTPC         — invalid_quote_data
+[2026-09-22 09:20:08] [INFO ]   SKIP  ONGC         — invalid_quote_data
+[2026-09-22 09:20:08] [INFO ]   SKIP  TECHM        — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  HCLTECH      — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  TATAMOTORS   — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  JSWSTEEL     — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  TATASTEEL    — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  INDUSINDBK   — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  ADANIENT     — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  ADANIPORTS   — api_error: No quote returned for ADANIPORTS: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  BAJAJFINSV   — api_error: No quote returned for BAJAJFINSV: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  BPCL         — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  BRITANNIA    — api_error: No quote returned for BRITANNIA: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  CIPLA        — invalid_quote_data
+[2026-09-22 09:20:08] [INFO ]   SKIP  COALINDIA    — api_error: No quote returned for COALINDIA: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  DIVISLAB     — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  DRREDDY      — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  EICHERMOT    — api_error: No quote returned for EICHERMOT: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  GRASIM       — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  HEROMOTOCO   — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  HINDALCO     — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  M&M          — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  HDFCLIFE     — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  SBILIFE      — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  SHREECEM     — api_error: No quote returned for SHREECEM: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  TATACONSUM   — api_error: No quote returned for TATACONSUM: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  UPL          — api_error: undefined
+[2026-09-22 09:20:08] [INFO ]   SKIP  VEDL         — api_error: No quote returned for VEDL: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ]   SKIP  BAJAJ-AUTO   — api_error: No quote returned for BAJAJ-AUTO: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-22 09:20:08] [INFO ] Screening done: 50 screened | 0 passed | 0 selected
+[2026-09-22 09:20:08] [INFO ] No stocks passed filters today (50 screened, 0 passed, 0 selected)
+[2026-09-22 11:08:14] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-22 11:08:14] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-22 11:08:14] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-22 11:08:14] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-22 11:08:15] [INFO ] Capital:  ₹50,000
+[2026-09-22 11:08:15] [INFO ] Slots:    3 max positions
+[2026-09-22 11:08:15] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-22 11:08:15] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-22 11:08:22] [INFO ] Breeze session restored from saved token
+[2026-09-22 11:08:22] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-22 11:08:22] [INFO ] Scheduled jobs:
+[2026-09-22 11:08:22] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-22 11:08:22] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-22 11:08:22] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-22 11:08:22] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-22 11:08:22] [INFO ] Server → http://localhost:3000
+[2026-09-22 11:08:22] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-22 11:08:22] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-22 11:17:40] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-22 11:17:40] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-22 11:17:40] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-22 11:17:40] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-22 11:17:40] [INFO ] Capital:  ₹50,000
+[2026-09-22 11:17:40] [INFO ] Slots:    3 max positions
+[2026-09-22 11:17:40] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-22 11:17:40] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-22 11:17:45] [INFO ] Breeze session restored from saved token
+[2026-09-22 11:17:45] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-22 11:17:45] [INFO ] Scheduled jobs:
+[2026-09-22 11:17:45] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-22 11:17:45] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-22 11:17:45] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-22 11:17:45] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-22 11:17:45] [INFO ] Server → http://localhost:3000
+[2026-09-22 11:17:45] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-22 11:17:45] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-22 11:18:15] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-22 11:18:15] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-22 11:18:15] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-22 11:18:15] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-22 11:18:15] [INFO ] Capital:  ₹50,000
+[2026-09-22 11:18:15] [INFO ] Slots:    3 max positions
+[2026-09-22 11:18:15] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-22 11:18:15] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-22 11:18:20] [INFO ] Breeze session restored from saved token
+[2026-09-22 11:18:20] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-22 11:18:20] [INFO ] Scheduled jobs:
+[2026-09-22 11:18:20] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-22 11:18:20] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-22 11:18:20] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-22 11:18:20] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-22 11:18:20] [INFO ] Server → http://localhost:3000
+[2026-09-22 11:18:20] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-22 11:18:20] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-23 04:58:33] [INFO ] Session token received via redirect URL — activating...
+[2026-09-23 04:58:37] [INFO ] Breeze session initialized for token ending ...1646
+[2026-09-23 04:58:37] [INFO ] Session auto-activated from redirect URL
+[2026-09-23 06:21:42] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-23 06:21:42] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-23 06:21:42] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-23 06:21:42] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-23 06:21:42] [INFO ] Capital:  ₹50,000
+[2026-09-23 06:21:42] [INFO ] Slots:    3 max positions
+[2026-09-23 06:21:42] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-23 06:21:42] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-23 06:21:47] [INFO ] Breeze session restored from saved token
+[2026-09-23 06:21:47] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-23 06:21:47] [INFO ] Scheduled jobs:
+[2026-09-23 06:21:47] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-23 06:21:47] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-23 06:21:47] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-23 06:21:47] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-23 06:21:47] [INFO ] Server → http://localhost:3000
+[2026-09-23 06:21:47] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-23 06:21:47] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-23 06:28:12] [INFO ] Session token received via redirect URL — activating...
+[2026-09-23 06:28:16] [INFO ] Breeze session initialized for token ending ...3575
+[2026-09-23 06:28:16] [INFO ] Session auto-activated from redirect URL
+[2026-09-23 06:34:01] [INFO ] Session token received via redirect URL — activating...
+[2026-09-23 06:34:05] [INFO ] Breeze session initialized for token ending ...3575
+[2026-09-23 06:34:05] [INFO ] Session auto-activated from redirect URL
+[2026-09-23 09:20:00] [INFO ] [CRON] 2:50 PM — buy phase triggered
+[2026-09-23 09:20:00] [INFO ] ══════════ BUY PHASE 2:50 PM ══════════
+[2026-09-23 09:20:00] [INFO ] Nifty 50: +0.00%
+[2026-09-23 09:20:00] [WARN ] Could not fetch VIX data (getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Object.getVix (/app/src/screener.js:83:19)
+    at async Object.executeBuy (/app/src/trader.js:254:37)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)). VIX check skipped.
+[2026-09-23 09:20:00] [INFO ] Market OK: Nifty=0.00% VIX=N/A
+[2026-09-23 09:20:00] [INFO ] Screening 50 Nifty 50 stocks...
+[2026-09-23 09:20:00] [ERROR]   Error fetching RELIND: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 0)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:00] [ERROR]   Error fetching TCS: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 1)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:00] [ERROR]   Error fetching HDFBAN: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:00] [ERROR]   Error fetching INFTEC: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:00] [ERROR]   Error fetching ICIBAN: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:01] [ERROR]   Error fetching STABAN: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:01] [ERROR]   Error fetching BHAAIR: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:02] [ERROR]   Error fetching LARTOU: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 0)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:02] [ERROR]   Error fetching ASIPAI: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:02] [ERROR]   Error fetching TITIND: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:02] [ERROR]   Error fetching AXIBAN: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 1)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:02] [ERROR]   Error fetching MARUTI: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:02] [ERROR]   Error fetching BAJFI: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:02] [ERROR]   Error fetching ULTCEM: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:03] [ERROR]   Error fetching TECMAH: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:03] [ERROR]   Error fetching HCLTEC: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:04] [ERROR]   Error fetching TATMOT: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 0)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:04] [ERROR]   Error fetching JSWSTE: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 1)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:04] [ERROR]   Error fetching TATSTE: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:04] [ERROR]   Error fetching JIOFIN: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:04] [ERROR]   Error fetching ADAENT: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:04] [ERROR]   Error fetching BAFINS: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 1)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:04] [ERROR]   Error fetching CIPLA: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:05] [ERROR]   Error fetching EICMOT: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:05] [ERROR]   Error fetching GRASIM: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [ERROR]   Error fetching MAXHEA: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 0)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [ERROR]   Error fetching HINDAL: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 1)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [ERROR]   Error fetching MAHMAH: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [ERROR]   Error fetching HDFSTA: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [ERROR]   Error fetching SBILIF: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [ERROR]   Error fetching ZOMLIM: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [ERROR]   Error fetching INTAVI: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  RELIND       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 0)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  TCS          — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 1)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  HDFBAN       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  INFTEC       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  ICIBAN       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  HINLEV       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  ITC          — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  STABAN       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  BHAAIR       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  KOTMAH       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  LARTOU       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 0)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  AXIBAN       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 1)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  ASIPAI       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  MARUTI       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  TITIND       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  SUNPHA       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  WIPRO        — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  ULTCEM       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  BAJFI        — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  NESIND       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  POWGRI       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  NTPC         — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  ONGC         — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  TECMAH       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  HCLTEC       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  TATMOT       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 0)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  JSWSTE       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 1)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  TATSTE       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  JIOFIN       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  ADAENT       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  ADAPOR       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  BAFINS       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 1)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  BHAELE       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  APOHOS       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  CIPLA        — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  COALIN       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  TRENT        — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  DRREDD       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  EICMOT       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  GRASIM       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  MAXHEA       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 0)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  HINDAL       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 1)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  MAHMAH       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  HDFSTA       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  SBILIF       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 4)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  SHRTRA       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  TATGLO       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ]   SKIP  ZOMLIM       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 2)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  INTAVI       — api_error: getQuotes() ErrorReferenceError: url is not defined
+    at BreezeConnect.self.makeRequest (/app/node_modules/breezeconnect/breezeConnect.js:996:86)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async Object.getQuote (/app/src/breeze.js:133:15)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Promise.all (index 3)
+    at async Object.screenStocks (/app/src/screener.js:236:21)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-23 09:20:06] [INFO ]   SKIP  BAAUTO       — invalid_quote_data
+[2026-09-23 09:20:06] [INFO ] Screening done: 50 screened | 0 passed | 0 selected
+[2026-09-23 09:20:06] [INFO ] No stocks passed filters today (50 screened, 0 passed, 0 selected)
+[2026-09-23 09:32:09] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-23 09:32:09] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-23 09:32:09] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-23 09:32:09] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-23 09:32:09] [INFO ] Capital:  ₹50,000
+[2026-09-23 09:32:09] [INFO ] Slots:    3 max positions
+[2026-09-23 09:32:09] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-23 09:32:09] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-23 09:32:14] [INFO ] Breeze session restored from saved token
+[2026-09-23 09:32:14] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-23 09:32:14] [INFO ] Scheduled jobs:
+[2026-09-23 09:32:14] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-23 09:32:14] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-23 09:32:14] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-23 09:32:14] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-23 09:32:14] [INFO ] Server → http://localhost:3000
+[2026-09-23 09:32:14] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-23 09:32:14] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-23 09:39:19] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-23 09:39:19] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-23 09:39:19] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-23 09:39:19] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-23 09:39:19] [INFO ] Capital:  ₹50,000
+[2026-09-23 09:39:19] [INFO ] Slots:    3 max positions
+[2026-09-23 09:39:19] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-23 09:39:19] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-23 09:39:23] [INFO ] Breeze session restored from saved token
+[2026-09-23 09:39:23] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-23 09:39:23] [INFO ] Scheduled jobs:
+[2026-09-23 09:39:23] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-23 09:39:23] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-23 09:39:23] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-23 09:39:23] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-23 09:39:23] [INFO ] Server → http://localhost:3000
+[2026-09-23 09:39:23] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-23 09:39:23] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-24 03:51:31] [INFO ] Session token received via redirect URL — activating...
+[2026-09-24 03:51:39] [INFO ] Breeze session initialized for token ending ...4222
+[2026-09-24 03:51:39] [INFO ] Session auto-activated from redirect URL
+[2026-09-24 09:20:00] [INFO ] [CRON] 2:50 PM — buy phase triggered
+[2026-09-24 09:20:00] [INFO ] ══════════ BUY PHASE 2:50 PM ══════════
+[2026-09-24 09:20:01] [INFO ] Nifty 50: +0.00%
+[2026-09-24 09:20:01] [WARN ] getQuote(INDIAVIX) failed (attempt 1/3), retrying in 1000ms: getQuotes() ErrorError: makeRequest GET https://api.icicidirect.com/breezeapi/api/v1/quotes failed: Request failed with status code 503
+    at BreezeConnect.patchedMakeRequest [as makeRequest] (/app/src/breeze.js:27:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async /app/src/breeze.js:165:17
+    at async _withRetry (/app/src/breeze.js:148:14)
+    at async Object.getVix (/app/src/screener.js:83:19)
+    at async Object.executeBuy (/app/src/trader.js:254:37)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-24 09:20:02] [WARN ] getQuote(INDIAVIX) failed (attempt 2/3), retrying in 1000ms: No quote returned for INDIAVIX: "Check stock code:Stock may not be available for trading on website or on the selected exchange"
+[2026-09-24 09:20:04] [WARN ] Could not fetch VIX data (No quote returned for INDIAVIX: "Check stock code:Stock may not be available for trading on website or on the selected exchange"). VIX check skipped.
+[2026-09-24 09:20:04] [INFO ] Market OK: Nifty=0.00% VIX=N/A
+[2026-09-24 09:20:04] [INFO ] Screening 50 Nifty 50 stocks...
+[2026-09-24 09:20:04] [WARN ] getQuote(RELIND) failed (attempt 1/3), retrying in 1000ms: getQuotes() ErrorError: makeRequest GET https://api.icicidirect.com/breezeapi/api/v1/quotes failed: Request failed with status code 503
+    at BreezeConnect.patchedMakeRequest [as makeRequest] (/app/src/breeze.js:27:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async /app/src/breeze.js:165:17
+    at async _withRetry (/app/src/breeze.js:148:14)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:102:30)
+    at async Object.screenStocks (/app/src/screener.js:236:20)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-24 09:20:23] [INFO ]   SKIP  RELIND       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  TCS          — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  HDFBAN       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  INFTEC       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  ICIBAN       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  HINLEV       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  ITC          — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  STABAN       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  BHAAIR       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  KOTMAH       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  LARTOU       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  AXIBAN       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  ASIPAI       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  MARUTI       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  TITIND       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  SUNPHA       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  WIPRO        — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  ULTCEM       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  BAJFI        — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  NESIND       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  POWGRI       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  NTPC         — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  ONGC         — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  TECMAH       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  HCLTEC       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  TATMOT       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  JSWSTE       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  TATSTE       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  JIOFIN       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  ADAENT       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  ADAPOR       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  BAFINS       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  BHAELE       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  APOHOS       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  CIPLA        — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  COALIN       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  TRENT        — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  DRREDD       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  EICMOT       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  GRASIM       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  MAXHEA       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  HINDAL       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  MAHMAH       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  HDFSTA       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  SBILIF       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  SHRTRA       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  TATGLO       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  ZOMLIM       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  INTAVI       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ]   SKIP  BAAUTO       — invalid_quote_data
+[2026-09-24 09:20:23] [INFO ] Screening done: 50 screened | 0 passed | 0 selected
+[2026-09-24 09:20:23] [INFO ] No stocks passed filters today (50 screened, 0 passed, 0 selected)
+[2026-09-25 04:15:00] [INFO ] [CRON] 9:45 AM — deadline sell triggered
+[2026-09-25 04:15:00] [INFO ] ══════════ DEADLINE SELL 9:45 AM ══════════
+[2026-09-25 04:15:00] [INFO ] No positions remaining at deadline — all clear
+[2026-09-25 04:17:16] [INFO ] Session token received via redirect URL — activating...
+[2026-09-25 04:17:23] [INFO ] Breeze session initialized for token ending ...9014
+[2026-09-25 04:17:23] [INFO ] Session auto-activated from redirect URL
+[2026-09-25 04:17:24] [INFO ] Session token received via redirect URL — activating...
+[2026-09-25 04:17:27] [INFO ] Breeze session initialized for token ending ...9014
+[2026-09-25 04:17:27] [INFO ] Session auto-activated from redirect URL
+[2026-09-25 09:10:30] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-25 09:10:30] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-25 09:10:30] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-25 09:10:30] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-25 09:10:30] [INFO ] Capital:  ₹50,000
+[2026-09-25 09:10:30] [INFO ] Slots:    3 max positions
+[2026-09-25 09:10:30] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-25 09:10:30] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-25 09:10:35] [INFO ] Breeze session restored and verified live
+[2026-09-25 09:10:35] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-25 09:10:35] [INFO ] Scheduled jobs:
+[2026-09-25 09:10:35] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-25 09:10:35] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-25 09:10:35] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-25 09:10:35] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-25 09:10:35] [INFO ] Server → http://localhost:3000
+[2026-09-25 09:10:35] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-25 09:10:35] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-25 09:10:45] [INFO ] ╔══════════════════════════════════════╗
+[2026-09-25 09:10:45] [INFO ] ║         BTST Bot — Starting Up       ║
+[2026-09-25 09:10:45] [INFO ] ╚══════════════════════════════════════╝
+[2026-09-25 09:10:45] [INFO ] Mode:     🔵 DRY RUN (no real orders)
+[2026-09-25 09:10:45] [INFO ] Capital:  ₹50,000
+[2026-09-25 09:10:45] [INFO ] Slots:    3 max positions
+[2026-09-25 09:10:45] [INFO ] Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:50 PM IST
+[2026-09-25 09:10:45] [WARN ] DRY RUN active — no real orders will be placed until DRY_RUN=false in .env
+[2026-09-25 09:10:50] [INFO ] Breeze session restored and verified live
+[2026-09-25 09:10:50] [INFO ] Scheduler active — timezone: Asia/Kolkata
+[2026-09-25 09:10:50] [INFO ] Scheduled jobs:
+[2026-09-25 09:10:50] [INFO ]   SELL START  → 09:30 AM IST (Mon-Fri)
+[2026-09-25 09:10:50] [INFO ]   SELL DEADLINE → 09:45 AM IST (Mon-Fri)
+[2026-09-25 09:10:50] [INFO ]   BUY         → 02:50 PM IST (Mon-Fri)
+[2026-09-25 09:10:50] [INFO ] Bot ready. Waiting for scheduled events.
+[2026-09-25 09:10:50] [INFO ] Server → http://localhost:3000
+[2026-09-25 09:10:50] [INFO ] Dashboard → http://localhost:3000/dashboard
+[2026-09-25 09:10:50] [INFO ] Redirect URL for ICICI Direct API settings → http://localhost:3000/
+[2026-09-25 09:20:00] [INFO ] [CRON] 2:50 PM — buy phase triggered
+[2026-09-25 09:20:00] [INFO ] ══════════ BUY PHASE 2:50 PM ══════════
+[2026-09-25 09:20:00] [INFO ] Nifty 50: +0.22%
+[2026-09-25 09:20:00] [WARN ] getQuote(INDVIX) failed (attempt 1/3), retrying in 1000ms: getQuotes() ErrorError: makeRequest GET https://api.icicidirect.com/breezeapi/api/v1/quotes failed: Request failed with status code 503
+    at BreezeConnect.patchedMakeRequest [as makeRequest] (/app/src/breeze.js:27:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async /app/src/breeze.js:195:17
+    at async _withRetry (/app/src/breeze.js:171:14)
+    at async Object.getVix (/app/src/screener.js:85:19)
+    at async Object.executeBuy (/app/src/trader.js:254:37)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-25 09:20:01] [INFO ] India VIX: 12.27
+[2026-09-25 09:20:01] [INFO ] Market OK: Nifty=0.22% VIX=12.27
+[2026-09-25 09:20:01] [INFO ] Screening 50 Nifty 50 stocks...
+[2026-09-25 09:20:01] [WARN ] getQuote(RELIND) failed (attempt 1/3), retrying in 1000ms: getQuotes() ErrorError: makeRequest GET https://api.icicidirect.com/breezeapi/api/v1/quotes failed: Request failed with status code 503
+    at BreezeConnect.patchedMakeRequest [as makeRequest] (/app/src/breeze.js:27:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async BreezeConnect.self.getQuotes (/app/node_modules/breezeconnect/breezeConnect.js:1589:28)
+    at async /app/src/breeze.js:195:17
+    at async _withRetry (/app/src/breeze.js:171:14)
+    at async Promise.all (index 0)
+    at async analyzeStock (/app/src/screener.js:104:30)
+    at async Object.screenStocks (/app/src/screener.js:238:20)
+    at async Object.executeBuy (/app/src/trader.js:277:42)
+    at async cron.schedule.timezone [as _execution] (/app/src/scheduler.js:62:7)
+[2026-09-25 09:20:21] [INFO ]   FAIL  RELIND       — fall_too_small: 0.39% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  TCS          — below_20EMA: ltp=2073.00 ema20=2200.75
+[2026-09-25 09:20:21] [INFO ]   FAIL  HDFBAN       — fall_too_small: 1.14% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  INFTEC       — below_20EMA: ltp=996.90 ema20=1067.68
+[2026-09-25 09:20:21] [INFO ]   FAIL  ICIBAN       — below_20EMA: ltp=1322.60 ema20=1375.00
+[2026-09-25 09:20:21] [INFO ]   FAIL  HINLEV       — fall_too_small: 0.25% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  ITC          — fall_too_small: 0.09% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  STABAN       — fall_too_small: 0.31% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  BHAAIR       — fall_too_small: -0.38% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  KOTMAH       — below_20EMA: ltp=401.65 ema20=412.52
+[2026-09-25 09:20:21] [INFO ]   FAIL  LARTOU       — fall_too_small: 0.20% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  AXIBAN       — fall_too_small: 2.90% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  ASIPAI       — fall_too_small: 1.64% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  MARUTI       — fall_too_small: 0.42% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  TITIND       — fall_too_small: 0.53% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  SUNPHA       — fall_too_small: 0.02% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  WIPRO        — fall_too_small: 0.21% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  ULTCEM       — fall_too_small: 0.77% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  BAJFI        — fall_too_small: 1.22% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  NESIND       — fall_too_small: 0.50% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  POWGRI       — fall_too_small: 0.88% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  NTPC         — fall_too_small: -0.18% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  ONGC         — below_20EMA: ltp=235.61 ema20=235.87
+[2026-09-25 09:20:21] [INFO ]   FAIL  TECMAH       — fall_too_small: 0.19% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  HCLTEC       — fall_too_small: 0.98% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  TATMOT       — below_20EMA: ltp=289.95 ema20=307.18
+[2026-09-25 09:20:21] [INFO ]   FAIL  JSWSTE       — fall_too_small: 0.01% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  TATSTE       — fall_too_small: 0.16% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  JIOFIN       — fall_too_small: -0.14% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  ADAENT       — fall_too_small: 0.50% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  ADAPOR       — fall_too_small: 0.22% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  BAFINS       — fall_too_small: 0.32% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  BHAELE       — fall_too_small: -0.06% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  APOHOS       — fall_too_small: 0.03% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  CIPLA        — fall_too_small: -0.01% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  COALIN       — fall_too_small: 0.82% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  TRENT        — below_20EMA: ltp=2667.90 ema20=2816.50
+[2026-09-25 09:20:21] [INFO ]   FAIL  DRREDD       — fall_too_small: 0.31% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  EICMOT       — fall_too_small: -0.01% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  GRASIM       — fall_too_small: 0.32% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  MAXHEA       — fall_too_large: -3.34% (max -2.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  HINDAL       — fall_too_small: -0.39% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  MAHMAH       — fall_too_small: 1.85% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  HDFSTA       — fall_too_small: 0.59% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  SBILIF       — fall_too_small: -0.45% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  SHRTRA       — fall_too_small: 0.15% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  TATGLO       — fall_too_small: -0.45% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  ZOMLIM       — fall_too_small: -0.04% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  INTAVI       — fall_too_small: 1.18% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ]   FAIL  BAAUTO       — fall_too_small: 0.79% (need ≤ -0.5%)
+[2026-09-25 09:20:21] [INFO ] Screening done: 50 screened | 0 passed | 0 selected
+[2026-09-25 09:20:21] [INFO ] No stocks passed filters today (50 screened, 0 passed, 0 selected)

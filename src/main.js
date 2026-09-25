@@ -41,3 +41,13 @@ main().catch(e => {
   logger.error(`Fatal startup error: ${e.message}`);
   process.exit(1);
 });
+
+process.on('unhandledRejection', (reason) => {
+  const msg = reason instanceof Error ? reason.message : String(reason).split('\n')[0];
+  logger.error(`Unhandled rejection: ${msg}`);
+});
+
+process.on('uncaughtException', (e) => {
+  logger.error(`Uncaught exception: ${e.message}`);
+  process.exit(1);
+});
