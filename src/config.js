@@ -11,7 +11,7 @@ module.exports = {
   MAX_VOLUME_MULTIPLIER: 1.5,
 
   // Sell thresholds
-  TARGET_PCT: 0.8,
+  TARGET_PCT: 1.2,
   STOPLOSS_PCT: 1.5,
 
   // Market filters
@@ -21,7 +21,7 @@ module.exports = {
   // Timing (IST, 24hr)
   SELL_TIME: '09:30',
   SELL_DEADLINE: '09:45',
-  BUY_TIME: '14:50',
+  BUY_TIME: '14:58',
 
   EXCHANGE: 'NSE',
   PRODUCT: 'CNC',

@@ -55,9 +55,9 @@ function startScheduler() {
     }
   }, { timezone: TZ });
 
-  // 2:50 PM IST — buy phase
-  cron.schedule('50 14 * * 1-5', async () => {
-    logger.info('[CRON] 2:50 PM — buy phase triggered');
+  // 2:58 PM IST — buy phase
+  cron.schedule('58 14 * * 1-5', async () => {
+    logger.info('[CRON] 2:58 PM — buy phase triggered');
     try {
       await trader.executeBuy();
     } catch (e) {
@@ -68,7 +68,7 @@ function startScheduler() {
   logger.info('Scheduled jobs:');
   logger.info('  SELL START  → 09:30 AM IST (Mon-Fri)');
   logger.info('  SELL DEADLINE → 09:45 AM IST (Mon-Fri)');
-  logger.info('  BUY         → 02:50 PM IST (Mon-Fri)');
+  logger.info('  BUY         → 02:58 PM IST (Mon-Fri)');
 }
 
 module.exports = { startScheduler };

@@ -20,7 +20,24 @@ const NIFTY50_SYMBOLS = [
   'SHRTRA', 'TATGLO', 'ZOMLIM', 'INTAVI', 'BAAUTO',
 ];
 
+// Nifty Next 50 — ISec codes verified from SecurityMaster/NSEScripMaster.txt Sep 2026.
+const NIFTY_NEXT50_SYMBOLS = [
+  'ADAGRE', 'AMBCE',  'AURPHA', 'BAJHOL', 'BANBAR',
+  'BERPAI', 'BOSLIM', 'BRIIND', 'CHOINV', 'COLPAL',
+  'CUMIND', 'DABIND', 'DIVLAB', 'DLFLIM', 'GODCON',
+  'GODPRO', 'HAVIND', 'HDFAMC', 'HINZIN', 'ICILOM',
+  'ICIPRU', 'INDOIL', 'INDRAI', 'INDHOT', 'INFEDG',
+  'JSWENE', 'LUPIN',  'MARLIM', 'MOTSUM', 'MUTFIN',
+  'PAGIND', 'PETLNG', 'PIDIND', 'PIIND',  'RURELE',
+  'SAIL',   'SIEMEN', 'SRF',   'TATCOM', 'TATELX',
+  'TATPOW', 'TORPHA', 'TVSMOT', 'UNIBR',  'VEDLIM',
+  'VOLTAS', 'ZEEENT',
+];
+
+const NIFTY100_SYMBOLS = [...NIFTY50_SYMBOLS, ...NIFTY_NEXT50_SYMBOLS];
+
 const SECTORS = {
+  // Nifty 50
   RELIND: 'energy',   TCS: 'it',        HDFBAN: 'banking',
   INFTEC: 'it',       ICIBAN: 'banking', HINLEV: 'fmcg',
   ITC: 'fmcg',        STABAN: 'banking', BHAAIR: 'telecom',
@@ -38,6 +55,23 @@ const SECTORS = {
   MAHMAH: 'auto',     HDFSTA: 'finance', SBILIF: 'finance',
   SHRTRA: 'finance',  TATGLO: 'fmcg',    ZOMLIM: 'consumer',
   INTAVI: 'aviation', BAAUTO: 'auto',
+  // Nifty Next 50
+  ADAGRE: 'energy',   AMBCE: 'cement',   AURPHA: 'pharma',
+  BAJHOL: 'finance',  BANBAR: 'banking', BERPAI: 'consumer',
+  BOSLIM: 'auto',     BRIIND: 'fmcg',    CHOINV: 'finance',
+  COLPAL: 'fmcg',     CUMIND: 'infra',   DABIND: 'fmcg',
+  DIVLAB: 'pharma',   DLFLIM: 'realty',  GODCON: 'fmcg',
+  GODPRO: 'realty',   HAVIND: 'consumer',HDFAMC: 'finance',
+  HINZIN: 'metals',   ICILOM: 'finance', ICIPRU: 'finance',
+  INDOIL: 'energy',   INDRAI: 'consumer',INDHOT: 'consumer',
+  INFEDG: 'it',       JSWENE: 'energy',  LUPIN: 'pharma',
+  MARLIM: 'fmcg',     MOTSUM: 'auto',    MUTFIN: 'finance',
+  PAGIND: 'consumer', PETLNG: 'energy',  PIDIND: 'consumer',
+  PIIND: 'pharma',    RURELE: 'finance', SAIL: 'metals',
+  SIEMEN: 'infra',    SRF: 'infra',      TATCOM: 'telecom',
+  TATELX: 'it',       TATPOW: 'energy',  TORPHA: 'pharma',
+  TVSMOT: 'auto',     UNIBR: 'fmcg',     VEDLIM: 'metals',
+  VOLTAS: 'consumer', ZEEENT: 'media',
 };
 
 // ─────────────────────── Helpers ───────────────────────
@@ -228,16 +262,16 @@ function pickDiverse(scored, maxPositions) {
 // ─────────────────────── Main screener ───────────────────────
 
 async function screenStocks(openSymbols = []) {
-  logger.info(`Screening ${NIFTY50_SYMBOLS.length} Nifty 50 stocks...`);
+  logger.info(`Screening ${NIFTY100_SYMBOLS.length} Nifty 100 stocks...`);
   const all = [];
 
   // Process sequentially with a delay to avoid hitting Breeze API rate limits.
   // Batching 5 at a time fires 10 simultaneous requests (quote + history per stock),
   // which consistently triggers rate limiting.
-  for (let i = 0; i < NIFTY50_SYMBOLS.length; i++) {
-    const result = await analyzeStock(NIFTY50_SYMBOLS[i]);
+  for (let i = 0; i < NIFTY100_SYMBOLS.length; i++) {
+    const result = await analyzeStock(NIFTY100_SYMBOLS[i]);
     all.push(result);
-    if (i + 1 < NIFTY50_SYMBOLS.length) {
+    if (i + 1 < NIFTY100_SYMBOLS.length) {
       await new Promise(r => setTimeout(r, 300));
     }
   }
@@ -273,6 +307,8 @@ async function screenStocks(openSymbols = []) {
 
 module.exports = {
   NIFTY50_SYMBOLS,
+  NIFTY_NEXT50_SYMBOLS,
+  NIFTY100_SYMBOLS,
   SECTORS,
   screenStocks,
   getNiftyConditions,
