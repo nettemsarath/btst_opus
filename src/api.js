@@ -11,10 +11,11 @@ app.use(express.urlencoded({ extended: true }));
 
 // ─────────────────────── Root — auto-capture redirect ───────────────────────
 
-// ICICI Direct redirects here after login:  http://localhost:3030/?apisession=<token>
-// We grab the token, activate the session, then redirect to /?activated=true
-app.get('/', async (req, res) => {
-  const { apisession, activated, error } = req.query;
+// ICICI Direct redirects here after login — supports both GET and POST redirects.
+// Token may arrive in the query string (?apisession=...) or the POST body.
+async function handleRedirect(req, res) {
+  const apisession = req.query.apisession || req.body.apisession;
+  const { activated, error } = req.query;
 
   if (apisession) {
     logger.info('Session token received via redirect URL — activating...');
@@ -29,7 +30,10 @@ app.get('/', async (req, res) => {
   }
 
   res.sendFile(path.join(__dirname, '../templates/index.html'));
-});
+}
+
+app.get('/', handleRedirect);
+app.post('/', handleRedirect);
 // ─────────────────────── Session endpoints ───────────────────────
 
 app.get('/session/status', (req, res) => {

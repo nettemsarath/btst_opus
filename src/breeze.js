@@ -1,5 +1,6 @@
 const { BreezeConnect } = require('breezeconnect');
 const axios = require('axios');
+const crypto = require('crypto');
 const fs = require('fs');
 const path = require('path');
 const config = require('./config');
@@ -15,13 +16,30 @@ let _sessionReady = false;
 // breezeconnect library bug: `url` is declared with `let` inside the `try` block of
 // makeRequest but referenced in the `catch` block (out of scope), so any HTTP error
 // surfaces as "ReferenceError: url is not defined" instead of the real cause.
-// We replace makeRequest on the instance with a corrected version.
+// We replace makeRequest on the instance with a corrected version that also replicates
+// the library's auth header generation (X-Checksum, X-Timestamp, X-AppKey, X-SessionToken).
 function _patchMakeRequest(breeze) {
   const API_URL = 'https://api.icicidirect.com/breezeapi/api/v1/';
   breeze.makeRequest = async function patchedMakeRequest(method, endpoint, body, header) {
     const url = API_URL + endpoint; // declared outside try so catch can reference it
     try {
-      const res = await axios({ method: method.toLowerCase(), url, data: body, headers: header });
+      const timestamp = new Date().toISOString().split('.')[0] + '.000Z';
+      const bodyStr = JSON.stringify(body || {});
+      const checksum = crypto
+        .createHash('sha256')
+        .update(timestamp + bodyStr + config.BREEZE_API_SECRET)
+        .digest('hex');
+
+      const authHeaders = {
+        ...header,
+        'Content-Type': 'application/json',
+        'X-Checksum': 'token ' + checksum,
+        'X-Timestamp': timestamp,
+        'X-AppKey': config.BREEZE_API_KEY,
+        'X-SessionToken': this.apiSession || '',
+      };
+
+      const res = await axios({ method: method.toLowerCase(), url, data: body, headers: authHeaders });
       return res;
     } catch (error) {
       throw new Error(`makeRequest ${method} ${url} failed: ${error.message}`);
@@ -273,9 +291,12 @@ async function placeOrder({ stockCode, action, quantity, price, orderType = 'lim
 
   const breeze = _requireSession();
 
-  // validityDate: today's market close
-  const vd = new Date();
-  vd.setHours(15, 30, 0, 0);
+  // validityDate: today's market close at 15:30 IST (UTC+5:30 = 10:00 UTC)
+  const now = new Date();
+  const istMidnight = new Date(
+    new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(now) + 'T00:00:00+05:30'
+  );
+  const vd = new Date(istMidnight.getTime() + (15 * 60 + 30) * 60 * 1000);
 
   const res = await breeze.placeOrder({
     stockCode,
@@ -310,6 +331,7 @@ module.exports = {
   getSessionInfo,
   generateSession,
   initFromSavedSession,
+  pingSession,
   getQuote,
   getHistoricalData,
   placeOrder,
