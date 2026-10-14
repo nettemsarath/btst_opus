@@ -90,12 +90,18 @@ function _midnightISTExpiry(istDateStr) {
   return new Date(Date.UTC(y, m - 1, d, 18, 30, 0));
 }
 
+// Result of the most recent pingSession(): null = not pinged since the token was set,
+// true/false = last ping outcome. A failed ping marks the session invalid even if the
+// token was saved today, because ICICI can reject a token the date check still accepts.
+let _lastPing = null; // { ok: boolean, at: Date, error?: string }
+
 function isSessionValid() {
   const session = loadSession();
   if (!session || !session.session_token || !session.saved_at) return false;
   const savedDateIST = _istDateStr(new Date(session.saved_at));
   const todayIST = _istDateStr(new Date());
-  return savedDateIST === todayIST;
+  if (savedDateIST !== todayIST) return false;
+  return !(_lastPing && !_lastPing.ok);
 }
 
 function getSessionInfo() {
@@ -107,7 +113,7 @@ function getSessionInfo() {
   const savedAt = new Date(session.saved_at);
   const savedDateIST = _istDateStr(savedAt);
   const todayIST = _istDateStr(new Date());
-  const valid = savedDateIST === todayIST;
+  const valid = isSessionValid();
 
   const expiresAt = _midnightISTExpiry(savedDateIST);
   const now = new Date();
@@ -120,6 +126,9 @@ function getSessionInfo() {
     expires_at: expiresAt.toISOString(),
     hours_remaining: parseFloat(hoursRemaining.toFixed(1)),
     age_hours: parseFloat(ageHours.toFixed(1)),
+    last_ping: _lastPing
+      ? { ok: _lastPing.ok, at: _lastPing.at.toISOString(), error: _lastPing.error }
+      : null,
   };
 }
 
@@ -130,6 +139,7 @@ async function generateSession(sessionToken) {
   const breeze = _getInstance();
   await breeze.generateSession(config.BREEZE_API_SECRET, sessionToken);
   _sessionReady = true;
+  _lastPing = null; // new token — clear any earlier failed-ping state
   const saved = _saveSession(sessionToken);
   logger.info(`Breeze session initialized for token ending ...${sessionToken.slice(-4)}`);
   return saved;
@@ -160,6 +170,11 @@ async function initFromSavedSession() {
 
 async function pingSession() {
   if (!_breeze || !_sessionReady) return false;
+  const fail = (reason) => {
+    _lastPing = { ok: false, at: new Date(), error: reason };
+    logger.error(`pingSession failed: ${reason}`);
+    return false;
+  };
   try {
     const res = await _breeze.getQuotes({
       stockCode: 'NIFTY',
@@ -169,9 +184,15 @@ async function pingSession() {
       strikePrice: '',
       right: 'others',
     });
-    return !!(res && res.Success && res.Success[0]);
-  } catch {
-    return false;
+    if (res && res.Success && res.Success[0]) {
+      _lastPing = { ok: true, at: new Date() };
+      return true;
+    }
+    return fail(`empty response (Status=${res && res.Status}, Error=${res && res.Error})`);
+  } catch (e) {
+    // breezeConnect throws a string with the stack appended; keep only the first line
+    // (contains the HTTP status, e.g. "Request failed with status code 401").
+    return fail(String((e && e.message) || e).split('\n')[0]);
   }
 }
 

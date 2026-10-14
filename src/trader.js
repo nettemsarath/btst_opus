@@ -240,6 +240,11 @@ async function executeBuy() {
     return;
   }
 
+  if (!(await breeze.pingSession())) {
+    logger.error('SKIP BUY: Session rejected by ICICI (ping failed) — re-submit token at http://localhost:3000');
+    return;
+  }
+
   if (isHoliday()) {
     logger.info('SKIP BUY: Today is a market holiday');
     return;
