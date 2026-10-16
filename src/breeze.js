@@ -289,6 +289,14 @@ async function getHistoricalData(stockCode, fromDate, toDate) {
 
 // ─────────────────────── Orders ───────────────────────
 
+// Snap to the NSE 0.05 tick and emit a clean 2-decimal string. Float math such as
+// Math.ceil(x / 0.05) * 0.05 yields values like 294.15000000000003, which the API rejects.
+function _formatPrice(price) {
+  const p = Number(price);
+  if (!Number.isFinite(p) || p <= 0) throw new Error(`Invalid order price: ${price}`);
+  return (Math.round(p * 20) / 20).toFixed(2);
+}
+
 /**
  * Places a buy or sell order.
  * In DRY_RUN mode logs the intent and returns a fake order ID.
@@ -327,14 +335,14 @@ async function placeOrder({ stockCode, action, quantity, price, orderType = 'lim
     orderType,
     stoploss: '',
     quantity: String(quantity),
-    price: orderType === 'market' ? '0' : String(price),
+    price: orderType === 'market' ? '0' : _formatPrice(price),
     validity: 'day',
     validityDate: vd.toISOString(),
     disclosedQuantity: '0',
     expiryDate: '',
     right: '',
     strikePrice: '',
-    userRemark: 'btst-bot',
+    userRemark: 'btstbot', // Breeze accepts alphanumeric characters only
   });
 
   if (!res || !res.Success) {
