@@ -125,6 +125,22 @@
     .info-item .label { font-size: 0.72rem; color: #718096; margin-bottom: 4px; }
     .info-item .value { font-size: 1.05rem; font-weight: 700; color: #e2e8f0; }
 
+    .copy-btn {
+      margin-top: 14px;
+      width: 100%;
+      padding: 10px 16px;
+      background: #2d2d3d;
+      color: #e2e8f0;
+      border: 1px solid #3d3d52;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .copy-btn:hover { background: #3d3d52; }
+    .copy-btn:disabled { color: #718096; cursor: default; background: #2d2d3d; }
+
     .nav-link { display: block; text-align: center; margin-top: 8px; font-size: 0.83rem; color: #4299e1; text-decoration: none; }
     .nav-link:hover { text-decoration: underline; }
   </style>
@@ -164,6 +180,7 @@
         <div class="value" id="posCountVal">—</div>
       </div>
     </div>
+    <button class="copy-btn" id="copyTokenBtn" onclick="copyToken()" disabled>Copy session token</button>
   </div>
 
   <!-- Login button -->
@@ -232,6 +249,36 @@
     }
   }
 
+  async function copyToken() {
+    const btn = document.getElementById('copyTokenBtn');
+    try {
+      const res = await fetch('/api/session-token', { cache: 'no-store' });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Could not fetch token');
+      await writeClipboard(data.token);
+      btn.textContent = '✓ Token copied';
+    } catch (e) {
+      btn.textContent = '✗ ' + e.message;
+    }
+    setTimeout(() => { btn.textContent = 'Copy session token'; }, 2000);
+  }
+
+  // navigator.clipboard only exists on https/localhost — fall back to execCommand otherwise
+  async function writeClipboard(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    if (!ok) throw new Error('Clipboard copy failed');
+  }
+
   async function loadStatus() {
     try {
       const [sessRes, dashRes] = await Promise.all([
@@ -246,6 +293,7 @@
         badge.textContent = 'Active (' + sessRes.hours_remaining + 'h left)';
         badge.className = 'badge valid';
         warnBanner.style.display = 'none';
+        document.getElementById('copyTokenBtn').disabled = false;
         document.getElementById('sessionExpiry').innerHTML =
           `Expires: <span>${new Date(sessRes.expires_at).toLocaleString()}</span>`;
         document.getElementById('sessionAge').innerHTML =
@@ -253,6 +301,7 @@
       } else {
         badge.textContent = 'No active session';
         badge.className = 'badge invalid';
+        document.getElementById('copyTokenBtn').disabled = true;
         // Only show warn if not showing success/error banner
         if (!params.get('activated') && !params.get('error')) {
           warnBanner.style.display = 'block';

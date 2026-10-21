@@ -40,6 +40,16 @@ app.get('/session/status', (req, res) => {
   res.json(breeze.getSessionInfo());
 });
 
+// Raw session token for the "Copy token" button — only served while the session is valid
+app.get('/api/session-token', (req, res) => {
+  const session = breeze.loadSession();
+  if (!session || !session.session_token || !breeze.isSessionValid()) {
+    return res.status(404).json({ error: 'No active session token. Log in first.' });
+  }
+  res.set('Cache-Control', 'no-store');
+  res.json({ token: session.session_token });
+});
+
 // Expose the Breeze login URL so the frontend button can use it
 app.get('/api/login-url', (req, res) => {
   if (!config.BREEZE_API_KEY) {
