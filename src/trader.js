@@ -67,6 +67,14 @@ function appendToPnL(trade) {
 
 // ─────────────────────── Sell helpers ───────────────────────
 
+// Unsold positions bought on any earlier day. Using "buy_date < today" instead of
+// "buy_date === yesterday" picks up Friday buys on Monday, buys made before a
+// holiday, and positions whose sell failed on a previous morning.
+function getPositionsToSell() {
+  const today = getISTDateStr();
+  return readBotPositions().filter(p => !p.sold && p.buy_date < today);
+}
+
 async function sellPosition(position, ltp, exitReason) {
   const { stock, shares, buy_price, id, order_id: buyOrderId } = position;
   // Breeze API prohibits market orders (SEBI circular) — always use limit.
@@ -83,7 +91,8 @@ async function sellPosition(position, ltp, exitReason) {
 
   // Shares bought yesterday are not yet in demat (T+1), so a 'cash' sell is
   // rejected with "Insufficient stocks allocated in demat". Sell as BTST first;
-  // fall back to 'cash' in case the shares have already been credited.
+  // fall back to 'cash' in case the shares have already been credited (e.g. a
+  // position held over a weekend/holiday or left over from a failed sell).
   let orderId = null;
   try {
     const result = await breeze.placeOrder({ stockCode: stock, action: 'sell', quantity: shares, price, orderType, product: 'btst' });
@@ -167,16 +176,15 @@ async function executeSell() {
     return;
   }
 
-  const yesterday = getYesterdayISTStr();
-  const positions = readBotPositions();
-  const toManage = positions.filter(p => !p.sold && p.buy_date === yesterday);
+  const toManage = getPositionsToSell();
 
   if (toManage.length === 0) {
-    logger.info(`No bot positions from yesterday (${yesterday}) — nothing to sell`);
+    logger.info('No open bot positions from previous days — nothing to sell');
     return;
   }
 
-  logger.info(`Managing ${toManage.length} bot position(s) from ${yesterday}`);
+  const buyDates = [...new Set(toManage.map(p => p.buy_date))].join(', ');
+  logger.info(`Managing ${toManage.length} bot position(s) bought on ${buyDates}`);
   for (const pos of toManage) {
     await checkAndSellPosition(pos);
     await new Promise(r => setTimeout(r, 400));
@@ -185,9 +193,7 @@ async function executeSell() {
 
 async function checkRemainingPositions() {
   if (!breeze.isSessionValid()) return;
-  const yesterday = getYesterdayISTStr();
-  const positions = readBotPositions();
-  const remaining = positions.filter(p => !p.sold && p.buy_date === yesterday);
+  const remaining = getPositionsToSell();
 
   if (remaining.length === 0) return;
 
@@ -201,9 +207,7 @@ async function checkRemainingPositions() {
 async function executeDeadlineSell() {
   logger.info('══════════ DEADLINE SELL 9:45 AM ══════════');
 
-  const yesterday = getYesterdayISTStr();
-  const positions = readBotPositions();
-  const remaining = positions.filter(p => !p.sold && p.buy_date === yesterday);
+  const remaining = getPositionsToSell();
 
   if (remaining.length === 0) {
     logger.info('No positions remaining at deadline — all clear');
