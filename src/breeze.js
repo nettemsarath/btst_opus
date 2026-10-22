@@ -307,13 +307,15 @@ function _formatPrice(price) {
  * @param {number} params.quantity
  * @param {number} params.price  (ignored for market orders)
  * @param {'limit'|'market'} [params.orderType='limit']
+ * @param {'cash'|'btst'} [params.product='cash']  'btst' sells shares bought
+ *   yesterday that are not yet credited to demat (T+1 settlement)
  */
-async function placeOrder({ stockCode, action, quantity, price, orderType = 'limit' }) {
+async function placeOrder({ stockCode, action, quantity, price, orderType = 'limit', product = 'cash' }) {
   if (config.DRY_RUN) {
     const tag = `DRY-${Date.now()}`;
     logger.info(
       `[DRY RUN] ${action.toUpperCase()} ${stockCode} ` +
-      `x${quantity} @ ${orderType === 'market' ? 'MARKET' : price} (${orderType.toUpperCase()})`
+      `x${quantity} @ ${orderType === 'market' ? 'MARKET' : price} (${orderType.toUpperCase()}, ${product.toUpperCase()})`
     );
     return { orderId: tag, dryRun: true };
   }
@@ -330,7 +332,7 @@ async function placeOrder({ stockCode, action, quantity, price, orderType = 'lim
   const res = await breeze.placeOrder({
     stockCode,
     exchangeCode: 'NSE',
-    product: 'cash',
+    product,
     action,
     orderType,
     stoploss: '',
@@ -350,7 +352,7 @@ async function placeOrder({ stockCode, action, quantity, price, orderType = 'lim
   }
 
   const orderId = res.Success['order-id'] || res.Success.orderId || String(Date.now());
-  logger.info(`Order placed: ${action.toUpperCase()} ${stockCode} x${quantity} orderId=${orderId}`);
+  logger.info(`Order placed: ${action.toUpperCase()} ${stockCode} x${quantity} [${product.toUpperCase()}] orderId=${orderId}`);
   return { orderId };
 }
 

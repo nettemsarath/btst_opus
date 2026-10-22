@@ -81,13 +81,22 @@ async function sellPosition(position, ltp, exitReason) {
     `[${exitReason.toUpperCase()}] [LIMIT]`
   );
 
+  // Shares bought yesterday are not yet in demat (T+1), so a 'cash' sell is
+  // rejected with "Insufficient stocks allocated in demat". Sell as BTST first;
+  // fall back to 'cash' in case the shares have already been credited.
   let orderId = null;
   try {
-    const result = await breeze.placeOrder({ stockCode: stock, action: 'sell', quantity: shares, price, orderType });
+    const result = await breeze.placeOrder({ stockCode: stock, action: 'sell', quantity: shares, price, orderType, product: 'btst' });
     orderId = result.orderId;
   } catch (e) {
-    logger.error(`  Failed to place sell order for ${stock}: ${e instanceof Error ? e.message : String(e)}`);
-    return false;
+    logger.warn(`  BTST sell failed for ${stock}: ${e instanceof Error ? e.message : String(e)} — retrying as CASH`);
+    try {
+      const result = await breeze.placeOrder({ stockCode: stock, action: 'sell', quantity: shares, price, orderType, product: 'cash' });
+      orderId = result.orderId;
+    } catch (e2) {
+      logger.error(`  Failed to place sell order for ${stock}: ${e2 instanceof Error ? e2.message : String(e2)}`);
+      return false;
+    }
   }
 
   // Mark sold in bot_positions.json
