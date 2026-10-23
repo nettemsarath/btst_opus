@@ -141,6 +141,18 @@
     .copy-btn:hover { background: #3d3d52; }
     .copy-btn:disabled { color: #718096; cursor: default; background: #2d2d3d; }
 
+    .token-input {
+      width: 100%;
+      padding: 10px 12px;
+      background: #12121a;
+      color: #e2e8f0;
+      border: 1px solid #3d3d52;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-family: monospace;
+    }
+    .token-input:focus { outline: none; border-color: #3182ce; }
+
     .nav-link { display: block; text-align: center; margin-top: 8px; font-size: 0.83rem; color: #4299e1; text-decoration: none; }
     .nav-link:hover { text-decoration: underline; }
   </style>
@@ -196,6 +208,13 @@
     </p>
   </div>
 
+  <!-- Manual token -->
+  <div class="card">
+    <div class="card-title">Or paste a session token</div>
+    <input type="text" id="tokenInput" class="token-input" placeholder="Session token (or full redirect URL with ?apisession=…)" autocomplete="off" spellcheck="false">
+    <button class="copy-btn" id="submitTokenBtn" onclick="submitToken()">Submit token</button>
+  </div>
+
   <!-- How it works -->
   <div class="card">
     <div class="card-title">How it works</div>
@@ -247,6 +266,35 @@
       btn.disabled = false;
       btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> Login with ICICI Direct`;
     }
+  }
+
+  async function submitToken() {
+    const input = document.getElementById('tokenInput');
+    const btn = document.getElementById('submitTokenBtn');
+    const token = input.value.trim();
+    if (!token) return;
+    btn.disabled = true;
+    btn.textContent = 'Activating…';
+    try {
+      const res = await fetch('/api/session-token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Activation failed');
+      input.value = '';
+      document.getElementById('alertError').style.display = 'none';
+      document.getElementById('alertSuccess').style.display = 'block';
+      btn.textContent = '✓ Session activated';
+      loadStatus();
+    } catch (e) {
+      document.getElementById('alertSuccess').style.display = 'none';
+      document.getElementById('alertErrorMsg').textContent = e.message;
+      document.getElementById('alertError').style.display = 'block';
+      btn.textContent = '✗ Failed';
+    }
+    setTimeout(() => { btn.textContent = 'Submit token'; btn.disabled = false; }, 2000);
   }
 
   async function copyToken() {

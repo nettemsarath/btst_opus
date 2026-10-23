@@ -50,6 +50,30 @@ app.get('/api/session-token', (req, res) => {
   res.json({ token: session.session_token });
 });
 
+// Manually submit a session token (or the full redirect URL containing ?apisession=...)
+app.post('/api/session-token', async (req, res) => {
+  let token = String((req.body && req.body.token) || '').trim();
+  const m = token.match(/[?&]apisession=([^&\s#]+)/i);
+  if (m) token = decodeURIComponent(m[1]);
+  token = token.replace(/^["']|["']$/g, '').trim();
+
+  if (!token) return res.status(400).json({ error: 'Token is required.' });
+
+  try {
+    await breeze.generateSession(token);
+    const alive = await breeze.pingSession();
+    if (!alive) {
+      logger.warn('Manually submitted token saved but API ping failed');
+      return res.status(400).json({ error: 'Token was saved but the API ping failed — it may be expired or invalid.' });
+    }
+    logger.info('Session activated from manually submitted token');
+    res.json({ ok: true });
+  } catch (e) {
+    logger.error(`Manual session activation failed: ${e.message}`);
+    res.status(400).json({ error: e.message });
+  }
+});
+
 // Expose the Breeze login URL so the frontend button can use it
 app.get('/api/login-url', (req, res) => {
   if (!config.BREEZE_API_KEY) {
