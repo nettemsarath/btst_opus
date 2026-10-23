@@ -19,8 +19,9 @@ BTST (buy today, sell tomorrow) bot for NSE India using the ICICI Direct **Breez
 Single process started by `src/main.js`. It restores the saved session, starts the Express server (`api.js`) and registers the cron jobs (`scheduler.js`).
 
 - **`scheduler.js`**: node-cron jobs in `Asia/Kolkata`, Mon-Fri.
-  - 09:30 runs `trader.executeSell()` and starts a 5-minute `setInterval` position check.
+  - 09:16 runs `trader.executeSell()` and starts a 1-minute `setInterval` position check (guarded so runs never overlap).
   - 09:45 stops the interval and runs `executeDeadlineSell()`, which force-sells whatever is left.
+  - 14:40 runs `screener.prefetchHistory()`, which caches daily indicators (EMA20/50, 20-day avg volume, ATR14) for the day.
   - 14:58 runs `executeBuy()`.
 - **`trader.js`**: the orchestration logic. Buy flow:
   1. Check the session and ping it.
@@ -30,12 +31,12 @@ Single process started by `src/main.js`. It restores the saved session, starts t
   5. `screener.screenStocks()`.
   6. Place limit orders at LTP+0.3%, sized as `ALLOCATED_CAPITAL / MAX_POSITIONS` per slot.
 
-  Sell flow compares LTP against the target or stoploss from `buy_price`. The stoploss limit price is LTP×0.995.
+  Sell flow compares LTP against the target, the stoploss and a trailing stop (armed at +0.6%, exits on a 0.4% giveback from `peak_price`, which is stored on the position). Sell limits are priced below LTP so they cross the spread: 0.3% below, or 0.5% for stoploss.
 - **`screener.js`**: holds the hardcoded Nifty 100 universe and sector map.
   - The symbols are **ICICI "ISec" short codes** (e.g. `HDFBAN`, `RELIND`), not NSE tickers. Breeze requires them. Look them up in `SecurityMaster/NSEScripMaster.txt` (ShortName column) when adding or replacing stocks.
   - Each stock is fetched sequentially with a 300ms delay to avoid rate limits (one quote plus one historical call per stock, 100 stocks).
-  - The filter requires a fall between 0.5% and 2.5%, LTP above both EMA20 and EMA50, and volume under 1.5x the 20-day average.
-  - Stocks are ranked by a score (proximity to EMA20 plus a -1.5% sweet spot), then `pickDiverse` prefers one stock per sector.
+  - The filter requires a fall between 0.5% and 2.5%, LTP above both EMA20 and EMA50, EMA20 > EMA50, volume under 1.5x the 20-day average, ATR14 under 3% of price, and LTP at least 35% up from the day low (close location). EMAs are built from completed candles, and today's LTP is folded in.
+  - Stocks are ranked by a score (proximity to EMA20, a -1.5% sweet spot and close location), then `pickDiverse` prefers one stock per sector.
 - **`breeze.js`**: the only module that talks to Breeze. It wraps the `breezeconnect` SDK and holds session state, `_withRetry` (503 retries), `getQuote`, `getHistoricalData` and `placeOrder`. `DRY_RUN` is enforced inside `placeOrder`, which returns a fake `DRY-<ts>` order id. All orders go through there.
 - **`api.js`**: Express server. ICICI redirects to `/` with `?apisession=<token>` after login, and this activates the session. It also serves `/dashboard` (`templates/dashboard.html`), `/api/dashboard-data`, `/session/status`, `/health` and `/api/login-url`.
 - **State is JSON files in `data/`, with no database.**
@@ -50,9 +51,9 @@ Single process started by `src/main.js`. It restores the saved session, starts t
 - **The `breezeconnect` SDK is monkey-patched.** `_patchMakeRequest` in `breeze.js` replaces `makeRequest`. The SDK references an out-of-scope `url` in its catch block, which hides real HTTP errors, and the patch re-implements the auth headers (`X-Checksum` is a sha256 of timestamp + body + secret). Keep the two in sync if you touch auth or upgrade the SDK.
 - **Market orders are not allowed** by Breeze (SEBI), so all orders are `limit`.
 - **Sell phase selects every unsold position with `buy_date < today`** (`getPositionsToSell` in `trader.js`). This covers Friday buys on Monday, buys before a holiday, and positions left over from a failed sell. The sell tries product `btst` first (works only on the next trading day, T+1) and falls back to `cash` for shares already credited to demat.
-- **`SELL_TIME`, `SELL_DEADLINE` and `BUY_TIME` in `config.js` are not read.** Cron expressions in `scheduler.js` are hardcoded. Change both places, plus the labels in `api.js` `getNextAction()` (which still says 2:50 PM) and the log text in `main.js` and `trader.js`.
+- **`SELL_TIME`, `SELL_DEADLINE` and `BUY_TIME` in `config.js` are not read.** Cron expressions in `scheduler.js` are hardcoded. Change both places, plus the labels in `api.js` `getNextAction()`  and the log text in `main.js` and `trader.js`.
 - P&L is recorded from LTP at order placement, not the actual fill price. Orders are not checked for execution.
-- Stoploss and target are only evaluated at 09:30, then every 5 minutes until 09:45. There are no resting broker-side stoploss orders.
+- Stoploss, target and trailing stop are only evaluated from 09:16, then every minute until 09:45. There are no resting broker-side stoploss orders.
 
 ## Repo hygiene
 

@@ -129,19 +129,104 @@ async function getVix() {
 
 // ─────────────────────── Per-stock analysis ───────────────────────
 
+function _istDateStr(date = new Date()) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata' }).format(date);
+}
+
+// Fold today's LTP into an EMA computed on completed days.
+function _emaWithToday(prevEma, ltp, period) {
+  const k = 2 / (period + 1);
+  return ltp * k + prevEma * (1 - k);
+}
+
+function calculateATR(candles, period = 14) {
+  if (candles.length < period + 1) return null;
+  const trs = [];
+  for (let i = candles.length - period; i < candles.length; i++) {
+    const { high, low } = candles[i];
+    const prevClose = candles[i - 1].close;
+    trs.push(Math.max(high - low, Math.abs(high - prevClose), Math.abs(low - prevClose)));
+  }
+  return trs.reduce((a, b) => a + b, 0) / period;
+}
+
+// Indicators that only depend on completed daily candles. They do not change during
+// the day, so they are prefetched before the buy phase and cached until midnight.
+let _historyCache = { date: null, bySymbol: {} };
+
+async function fetchHistoryIndicators(symbol) {
+  const today = _istDateStr();
+  if (_historyCache.date === today && _historyCache.bySymbol[symbol]) {
+    return _historyCache.bySymbol[symbol];
+  }
+
+  const toDate = new Date();
+  const fromDate = new Date();
+  fromDate.setDate(fromDate.getDate() - config.HISTORY_CALENDAR_DAYS);
+
+  const history = await breeze.getHistoricalData(symbol, fromDate, toDate);
+
+  // Drop today's partial candle (if Breeze returns one) so EMAs and the volume
+  // average are built from completed sessions only.
+  const candles = (history || [])
+    .filter(d => {
+      const day = String(d.datetime).slice(0, 10);
+      return !/^\d{4}-\d{2}-\d{2}$/.test(day) || day < today;
+    })
+    .map(d => ({
+      high: parseFloat(d.high),
+      low: parseFloat(d.low),
+      close: parseFloat(d.close),
+      volume: parseFloat(d.volume),
+    }))
+    .filter(c => c.close > 0 && c.high > 0 && c.low > 0);
+
+  const closes = candles.map(c => c.close);
+  const last20Volumes = candles.slice(-20).map(c => c.volume).filter(v => v > 0);
+  const atr14 = calculateATR(candles, 14);
+  const lastClose = closes[closes.length - 1];
+
+  const indicators = {
+    days: candles.length,
+    prevEma20: calculateEMA(closes, 20),
+    prevEma50: calculateEMA(closes, 50),
+    avgVolume20: last20Volumes.length > 0
+      ? last20Volumes.reduce((a, b) => a + b, 0) / last20Volumes.length
+      : 0,
+    atrPct: atr14 && lastClose ? (atr14 / lastClose) * 100 : null,
+  };
+
+  if (_historyCache.date !== today) _historyCache = { date: today, bySymbol: {} };
+  _historyCache.bySymbol[symbol] = indicators;
+  return indicators;
+}
+
+async function prefetchHistory() {
+  logger.info(`Prefetching daily history for ${NIFTY100_SYMBOLS.length} stocks...`);
+  let ok = 0;
+  for (const symbol of NIFTY100_SYMBOLS) {
+    try {
+      await fetchHistoryIndicators(symbol);
+      ok++;
+    } catch (e) {
+      logger.warn(`  History prefetch failed for ${symbol}: ${_errMsg(e)} — will retry at buy time`);
+    }
+    await new Promise(r => setTimeout(r, 300));
+  }
+  logger.info(`History prefetch done: ${ok}/${NIFTY100_SYMBOLS.length} cached`);
+}
+
 async function analyzeStock(symbol) {
   try {
-    const toDate = new Date();
-    const fromDate = new Date();
-    fromDate.setDate(fromDate.getDate() - 100); // ~100 calendar days → ~70 trading days
-
-    const [quote, history] = await Promise.all([
+    const [quote, hist] = await Promise.all([
       breeze.getQuote(symbol),
-      breeze.getHistoricalData(symbol, fromDate, toDate),
+      fetchHistoryIndicators(symbol),
     ]);
 
     const ltp = parseFloat(quote.ltp);
     const prevClose = parseFloat(quote['previous_close']);
+    const high = parseFloat(quote.high || 0);
+    const low = parseFloat(quote.low || 0);
     const todayVolume = parseFloat(quote['total_quantity_traded'] || 0);
 
     if (!ltp || !prevClose) {
@@ -150,19 +235,14 @@ async function analyzeStock(symbol) {
 
     const changePct = ((ltp - prevClose) / prevClose) * 100;
 
-    if (!history || history.length < 55) {
-      return { symbol, passed: false, reason: `insufficient_history: ${history ? history.length : 0} days` };
+    if (hist.days < 60 || hist.prevEma50 === null) {
+      return { symbol, passed: false, reason: `insufficient_history: ${hist.days} days` };
     }
 
-    const closes = history.map(d => parseFloat(d.close)).filter(Boolean);
-    const last20Volumes = history.slice(-20).map(d => parseFloat(d.volume)).filter(v => v > 0);
-
-    const ema20 = calculateEMA(closes, 20);
-    const ema50 = calculateEMA(closes, 50);
-    const avgVolume20 = last20Volumes.length > 0
-      ? last20Volumes.reduce((a, b) => a + b, 0) / last20Volumes.length
-      : 0;
-    const volumeMultiplier = avgVolume20 > 0 ? todayVolume / avgVolume20 : 99;
+    const ema20 = _emaWithToday(hist.prevEma20, ltp, 20);
+    const ema50 = _emaWithToday(hist.prevEma50, ltp, 50);
+    const volumeMultiplier = hist.avgVolume20 > 0 ? todayVolume / hist.avgVolume20 : 99;
+    const closeLocation = high > low ? (ltp - low) / (high - low) : 0.5;
 
     return {
       symbol,
@@ -170,10 +250,12 @@ async function analyzeStock(symbol) {
       prevClose,
       changePct,
       todayVolume,
-      avgVolume20,
+      avgVolume20: hist.avgVolume20,
       volumeMultiplier,
       ema20,
       ema50,
+      atrPct: hist.atrPct,
+      closeLocation,
       sector: SECTORS[symbol] || 'other',
     };
   } catch (e) {
@@ -186,7 +268,7 @@ async function analyzeStock(symbol) {
 // ─────────────────────── Filter ───────────────────────
 
 function filterStock(data, openSymbols) {
-  const { symbol, changePct, ltp, ema20, ema50, volumeMultiplier } = data;
+  const { symbol, changePct, ltp, ema20, ema50, volumeMultiplier, atrPct, closeLocation } = data;
 
   if (openSymbols.includes(symbol)) {
     return { passed: false, reason: 'already_in_open_positions' };
@@ -209,10 +291,26 @@ function filterStock(data, openSymbols) {
       reason: `below_50EMA: ltp=${ltp.toFixed(2)} ema50=${ema50 ? ema50.toFixed(2) : 'N/A'}`,
     };
   }
+  // Pullback in an uptrend means the short EMA is above the long one.
+  if (ema20 < ema50) {
+    return { passed: false, reason: `no_uptrend: ema20=${ema20.toFixed(2)} < ema50=${ema50.toFixed(2)}` };
+  }
   if (volumeMultiplier >= config.MAX_VOLUME_MULTIPLIER) {
     return {
       passed: false,
       reason: `volume_too_high: ${volumeMultiplier.toFixed(2)}x avg (max ${config.MAX_VOLUME_MULTIPLIER}x)`,
+    };
+  }
+  if (atrPct === null || atrPct > config.MAX_ATR_PCT) {
+    return {
+      passed: false,
+      reason: `too_volatile: atr=${atrPct ? atrPct.toFixed(2) : 'N/A'}% (max ${config.MAX_ATR_PCT}%)`,
+    };
+  }
+  if (closeLocation < config.MIN_CLOSE_LOCATION) {
+    return {
+      passed: false,
+      reason: `near_day_low: close_loc=${closeLocation.toFixed(2)} (min ${config.MIN_CLOSE_LOCATION})`,
     };
   }
 
@@ -222,7 +320,7 @@ function filterStock(data, openSymbols) {
 // ─────────────────────── Scoring ───────────────────────
 
 function scoreStock(data) {
-  const { changePct, ltp, ema20 } = data;
+  const { changePct, ltp, ema20, closeLocation } = data;
 
   // Proximity to 20 EMA: closer = higher (max 5 pts)
   const emaPctDist = Math.abs((ltp - ema20) / ema20) * 100;
@@ -231,7 +329,10 @@ function scoreStock(data) {
   // Fall sweetspot: ideal -1.5%, penalise distance (max 5 pts)
   const fallScore = Math.max(0, 5 - Math.abs(changePct + 1.5) * 2);
 
-  return parseFloat((emaScore + fallScore).toFixed(2));
+  // Intraday recovery: buyers stepping in off the low into the close (max 3 pts)
+  const recoveryScore = 3 * closeLocation;
+
+  return parseFloat((emaScore + fallScore + recoveryScore).toFixed(2));
 }
 
 // ─────────────────────── Sector diversity picker ───────────────────────
@@ -292,7 +393,8 @@ async function screenStocks(openSymbols = []) {
         `chg=${data.changePct.toFixed(2).padStart(6)}%  ` +
         `ltp=${data.ltp.toFixed(2)}  ` +
         `ema20=${data.ema20.toFixed(2)}  ` +
-        `vol=${data.volumeMultiplier.toFixed(2)}x  score=${score}`
+        `vol=${data.volumeMultiplier.toFixed(2)}x  atr=${data.atrPct.toFixed(2)}%  ` +
+        `close_loc=${data.closeLocation.toFixed(2)}  score=${score}`
       );
       passed.push({ ...data, score });
     }
@@ -311,6 +413,7 @@ module.exports = {
   NIFTY100_SYMBOLS,
   SECTORS,
   screenStocks,
+  prefetchHistory,
   getNiftyConditions,
   getVix,
   calculateEMA,

@@ -154,10 +154,10 @@ function getNextAction() {
   const [h, m] = istStr.split(':').map(Number);
   const mins = h * 60 + m;
 
-  if (mins < 9 * 60 + 30) return { label: 'Sell check',    time: '9:30 AM IST' };
+  if (mins < 9 * 60 + 16) return { label: 'Sell check',    time: '9:16 AM IST' };
   if (mins < 9 * 60 + 45) return { label: 'Deadline sell', time: '9:45 AM IST' };
-  if (mins < 14 * 60 + 50) return { label: 'Buy phase',    time: '2:50 PM IST' };
-  return { label: 'Sell check (tomorrow)', time: '9:30 AM IST' };
+  if (mins < 14 * 60 + 58) return { label: 'Buy phase',    time: '2:58 PM IST' };
+  return { label: 'Sell check (tomorrow)', time: '9:16 AM IST' };
 }
 
 function computeStats(trades) {

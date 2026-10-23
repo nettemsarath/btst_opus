@@ -78,11 +78,14 @@ function getPositionsToSell() {
 async function sellPosition(position, ltp, exitReason) {
   const { stock, shares, buy_price, id, order_id: buyOrderId } = position;
   // Breeze API prohibits market orders (SEBI circular) — always use limit.
-  // For stoploss, price slightly below LTP to maximise fill probability.
+  // Price below LTP so the order crosses the spread: a sell limit under the bid
+  // still fills at the bid, and fills are never verified, so a resting order
+  // would leave shares the bot believes it sold. Stoploss uses a wider buffer.
   const orderType = 'limit';
-  const price = exitReason === 'stoploss'
-    ? Math.floor((ltp * 0.995) / 0.05) * 0.05
-    : ltp;
+  const bufferPct = exitReason === 'stoploss'
+    ? config.STOPLOSS_LIMIT_BUFFER_PCT
+    : config.SELL_LIMIT_BUFFER_PCT;
+  const price = Math.floor((ltp * (1 - bufferPct / 100)) / 0.05) * 0.05;
 
   logger.info(
     `SELL ${stock} x${shares} @ ${price.toFixed(2)} ` +
@@ -154,13 +157,28 @@ async function checkAndSellPosition(position) {
   const targetPrice = buy_price * (1 + config.TARGET_PCT / 100);
   const slPrice = buy_price * (1 - config.STOPLOSS_PCT / 100);
 
+  // Track the best price seen this morning for the trailing profit lock.
+  const peak = Math.max(position.peak_price || 0, ltp);
+  if (peak !== position.peak_price) {
+    const positions = readBotPositions();
+    const idx = positions.findIndex(p => p.id === position.id);
+    if (idx >= 0) {
+      positions[idx].peak_price = peak;
+      writeBotPositions(positions);
+    }
+  }
+  const trailArmed = peak >= buy_price * (1 + config.TRAIL_TRIGGER_PCT / 100);
+  const trailPrice = peak * (1 - config.TRAIL_GIVEBACK_PCT / 100);
+
   logger.info(
-    `  Check ${stock}: ltp=${ltp.toFixed(2)} buy=${buy_price} ` +
-    `target=${targetPrice.toFixed(2)} sl=${slPrice.toFixed(2)}`
+    `  Check ${stock}: ltp=${ltp.toFixed(2)} buy=${buy_price} peak=${peak.toFixed(2)} ` +
+    `target=${targetPrice.toFixed(2)} sl=${slPrice.toFixed(2)}` +
+    (trailArmed ? ` trail=${trailPrice.toFixed(2)}` : '')
   );
 
   if (ltp >= targetPrice) return sellPosition(position, ltp, 'target hit');
   if (ltp <= slPrice) return sellPosition(position, ltp, 'stoploss');
+  if (trailArmed && ltp <= trailPrice) return sellPosition(position, ltp, 'trailing stop');
 
   logger.info(`  ${stock} in range — holding`);
   return false;
@@ -169,7 +187,7 @@ async function checkAndSellPosition(position) {
 // ─────────────────────── SELL PHASE ───────────────────────
 
 async function executeSell() {
-  logger.info('══════════ SELL PHASE 9:30 AM ══════════');
+  logger.info('══════════ SELL PHASE 9:16 AM ══════════');
 
   if (!(await breeze.pingSession())) {
     logger.error('ABORT SELL: Session invalid or API unreachable — re-submit token at http://localhost:3000');
@@ -197,7 +215,7 @@ async function checkRemainingPositions() {
 
   if (remaining.length === 0) return;
 
-  logger.info(`[5-min check] ${remaining.length} position(s) still open`);
+  logger.info(`[1-min check] ${remaining.length} position(s) still open`);
   for (const pos of remaining) {
     await checkAndSellPosition(pos);
     await new Promise(r => setTimeout(r, 400));
@@ -245,7 +263,7 @@ function isHoliday() {
 }
 
 async function executeBuy() {
-  logger.info('══════════ BUY PHASE 2:50 PM ══════════');
+  logger.info('══════════ BUY PHASE 2:58 PM ══════════');
 
   // ── Prerequisite checks ──────────────────────────────
   if (!breeze.isSessionValid()) {

@@ -9,18 +9,34 @@ module.exports = {
   MIN_FALL_PCT: 0.5,
   MAX_FALL_PCT: 2.5,
   MAX_VOLUME_MULTIPLIER: 1.5,
+  // Where LTP sits in today's high-low range (0 = at the low, 1 = at the high).
+  // Requiring a bounce off the low avoids buying stocks still being sold into the close.
+  MIN_CLOSE_LOCATION: 0.35,
+  // 14-day ATR as % of price. Above this, normal daily noise is bigger than the stoploss.
+  MAX_ATR_PCT: 3.0,
+  // ~100 trading days so the 50 EMA has converged.
+  HISTORY_CALENDAR_DAYS: 150,
 
   // Sell thresholds
   TARGET_PCT: 1.2,
   STOPLOSS_PCT: 1.5,
+  // Once a position has been up TRAIL_TRIGGER_PCT, exit if it gives back
+  // TRAIL_GIVEBACK_PCT from its peak. Locks in opening gap-ups that start to fade.
+  TRAIL_TRIGGER_PCT: 0.6,
+  TRAIL_GIVEBACK_PCT: 0.4,
+  // Sell limits sit below LTP so they cross the spread and fill at the bid.
+  // Orders are not checked for execution, so an unfilled sell leaves untracked shares.
+  SELL_LIMIT_BUFFER_PCT: 0.3,
+  STOPLOSS_LIMIT_BUFFER_PCT: 0.5,
 
   // Market filters
   MAX_NIFTY_FALL_PCT: 1.5,
   MAX_VIX: 20,
 
-  // Timing (IST, 24hr)
-  SELL_TIME: '09:30',
+  // Timing (IST, 24hr) — informational; cron expressions are hardcoded in scheduler.js
+  SELL_TIME: '09:16',
   SELL_DEADLINE: '09:45',
+  PREFETCH_TIME: '14:40',
   BUY_TIME: '14:58',
 
   EXCHANGE: 'NSE',

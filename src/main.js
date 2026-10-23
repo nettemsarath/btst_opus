@@ -18,7 +18,7 @@ async function main() {
   logger.info(`Mode:     ${config.DRY_RUN ? '🔵 DRY RUN (no real orders)' : '🔴 LIVE TRADING'}`);
   logger.info(`Capital:  ₹${config.ALLOCATED_CAPITAL.toLocaleString('en-IN')}`);
   logger.info(`Slots:    ${config.MAX_POSITIONS} max positions`);
-  logger.info(`Sell:     09:30 AM IST | Deadline: 09:45 AM IST | Buy: 02:58 PM IST`);
+  logger.info(`Sell:     09:16 AM IST (1-min checks) | Deadline: 09:45 AM IST | Buy: 02:58 PM IST`);
 
   if (config.DRY_RUN) {
     logger.warn('DRY RUN active — no real orders will be placed until DRY_RUN=false in .env');
