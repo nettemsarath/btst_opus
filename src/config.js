@@ -35,9 +35,9 @@ module.exports = {
 
   // Timing (IST, 24hr) — informational; cron expressions are hardcoded in scheduler.js
   SELL_TIME: '09:16',
-  SELL_DEADLINE: '09:45',
+  SELL_DEADLINE: '10:00',
   PREFETCH_TIME: '14:40',
-  BUY_TIME: '14:58',
+  BUY_TIME: '14:55',
 
   EXCHANGE: 'NSE',
   PRODUCT: 'CNC',

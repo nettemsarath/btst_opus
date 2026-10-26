@@ -223,7 +223,7 @@ async function checkRemainingPositions() {
 }
 
 async function executeDeadlineSell() {
-  logger.info('══════════ DEADLINE SELL 9:45 AM ══════════');
+  logger.info('══════════ DEADLINE SELL 10:00 AM ══════════');
 
   const remaining = getPositionsToSell();
 
@@ -263,7 +263,7 @@ function isHoliday() {
 }
 
 async function executeBuy() {
-  logger.info('══════════ BUY PHASE 2:58 PM ══════════');
+  logger.info('══════════ BUY PHASE 2:55 PM ══════════');
 
   // ── Prerequisite checks ──────────────────────────────
   if (!breeze.isSessionValid()) {

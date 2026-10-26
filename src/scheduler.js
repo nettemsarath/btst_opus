@@ -14,7 +14,7 @@ let _activeCheck = null;
 
 function startPositionChecks() {
   if (_checkInterval) return;
-  logger.info('Starting 1-minute position check loop (runs until 9:45 deadline)');
+  logger.info('Starting 1-minute position check loop (runs until 10:00 deadline)');
   _checkInterval = setInterval(() => {
     if (_activeCheck) {
       logger.warn('[1-min] Previous check still running — skipping this tick');
@@ -55,9 +55,9 @@ function startScheduler() {
     startPositionChecks();
   }, { timezone: TZ });
 
-  // 9:45 AM IST — hard deadline sell
-  cron.schedule('45 9 * * 1-5', async () => {
-    logger.info('[CRON] 9:45 AM — deadline sell triggered');
+  // 10:00 AM IST — hard deadline sell
+  cron.schedule('0 10 * * 1-5', async () => {
+    logger.info('[CRON] 10:00 AM — deadline sell triggered');
     stopPositionChecks();
     if (_activeCheck) await _activeCheck;
     try {
@@ -81,9 +81,9 @@ function startScheduler() {
     }
   }, { timezone: TZ });
 
-  // 2:58 PM IST — buy phase
-  cron.schedule('58 14 * * 1-5', async () => {
-    logger.info('[CRON] 2:58 PM — buy phase triggered');
+  // 2:55 PM IST — buy phase
+  cron.schedule('55 14 * * 1-5', async () => {
+    logger.info('[CRON] 2:55 PM — buy phase triggered');
     try {
       await trader.executeBuy();
     } catch (e) {
@@ -93,9 +93,9 @@ function startScheduler() {
 
   logger.info('Scheduled jobs:');
   logger.info('  SELL START    → 09:16 AM IST (Mon-Fri), then every minute');
-  logger.info('  SELL DEADLINE → 09:45 AM IST (Mon-Fri)');
+  logger.info('  SELL DEADLINE → 10:00 AM IST (Mon-Fri)');
   logger.info('  PREFETCH      → 02:40 PM IST (Mon-Fri)');
-  logger.info('  BUY           → 02:58 PM IST (Mon-Fri)');
+  logger.info('  BUY           → 02:55 PM IST (Mon-Fri)');
 }
 
 module.exports = { startScheduler };

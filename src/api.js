@@ -179,8 +179,8 @@ function getNextAction() {
   const mins = h * 60 + m;
 
   if (mins < 9 * 60 + 16) return { label: 'Sell check',    time: '9:16 AM IST' };
-  if (mins < 9 * 60 + 45) return { label: 'Deadline sell', time: '9:45 AM IST' };
-  if (mins < 14 * 60 + 58) return { label: 'Buy phase',    time: '2:58 PM IST' };
+  if (mins < 10 * 60) return { label: 'Deadline sell', time: '10:00 AM IST' };
+  if (mins < 14 * 60 + 55) return { label: 'Buy phase',    time: '2:55 PM IST' };
   return { label: 'Sell check (tomorrow)', time: '9:16 AM IST' };
 }
 
